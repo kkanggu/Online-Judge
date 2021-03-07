@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include <sstream>
+#include <climits>
 
 using std::string ;
 using std::cout ;
@@ -66,7 +67,7 @@ void Dice :: m_sortWeight ( const int iWeight , const int iRep )
 			{
 				for ( int j = iRep ; j > i ; --j )
 				{
-					m_irgWeight [ j + 1 ] = m_irgWeight [ j ] ;
+					m_irgWeight [ j ] = m_irgWeight [ j - 1 ] ;
 				}
 
 
