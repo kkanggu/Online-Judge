@@ -43,10 +43,16 @@ void Dice :: m_setWeight ( const string strInput )
 
 	/*stream.str ( strInput ) ;*/
 
-	for ( int i = 0 ; i < 6 ; ++i )
+	/*for ( int i = 0 ; i < 6 ; ++i )
 	{
 		stream >> strToken ;
 		m_sortWeight ( std::stoi ( strToken ) , i ) ;
+	}*/
+
+	for ( int i = 0 ; i < 6 ; ++i )
+	{
+		std::getline ( stream , strToken , ' ' ) ;
+		m_sortWeight ( std :: stoi ( strToken ) , i ) ;
 	}
 }
 
