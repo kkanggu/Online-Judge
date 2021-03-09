@@ -20,9 +20,7 @@ Day 1
 >Dice with 1 Exposed plane is ( N-2 ) * ( N-1 ) * 4 + ( N-2 ) * ( N-2 ).   
 >And I don't why I'm wrong. I'll try this later.   
 
-#1012 ing. (Organic Cabbage)
-
-
+#1012 ing. (Organic Cabbage)      
 
 Day 3
 >#1012 Complete. (Changed coding style)   
