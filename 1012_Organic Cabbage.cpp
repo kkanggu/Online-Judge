@@ -8,16 +8,52 @@ using std::string ;
 using std::cout ;
 using std::cin ;
 
+void addWorm ( int iX , int iY , const int iHorizon , const int iVertical , int irgCabbage [] [ 2500 ] )
+{
+	irgCabbage [ iX ] [ iY ] = 2 ;
+
+	if ( 0 != iX )
+	{
+		if ( 1 == irgCabbage [ iX - 1 ] [ iY ] )
+			addWorm ( iX - 1 , iY , iHorizon , iVertical , irgCabbage ) ;
+	}
+	if ( iHorizon != iX + 1 )
+	{
+		if ( 1 == irgCabbage [ iX + 1 ] [ iY ] )
+			addWorm ( iX + 1 , iY , iHorizon , iVertical , irgCabbage ) ;
+	}
+	if ( 0 != iY )
+	{
+		if ( 1 == irgCabbage [ iX ] [ iY - 1 ] )
+			addWorm ( iX , iY - 1 , iHorizon , iVertical , irgCabbage ) ;
+	}
+	if ( iVertical != iY + 1 )
+	{
+		if ( 1 == irgCabbage [ iX ] [ iY + 1 ] )
+			addWorm ( iX , iY + 1 , iHorizon , iVertical , irgCabbage ) ;
+	}
+}
+
 int main ()
 {
 	int iRep = 0 ;
 	int iHorizon = 0 ;
 	int iVertical = 0 ;
 	int iCnt = 0 ;
-	int ** irgCabbage ;
+	int irgCabbage [ 2500 ] [ 2500 ] ;
 	int iX = 0 ;
 	int iY = 0 ;
 	std :: queue < std :: pair < int , int > > qCabbage ;
+
+
+
+	for ( int i = 0 ; i < 2500 ; ++i )
+	{
+		for ( int j = 0 ; j < 2500 ; ++j )
+		{
+			irgCabbage [ i ] [ j ] = 0 ;
+		}
+	}
 
 
 	cin >> iRep ;
@@ -28,19 +64,6 @@ int main ()
 		scanf ( "%d %d %d" , & iHorizon , & iVertical , & iCnt ) ;
 
 		
-		irgCabbage = new int * [ iHorizon ] ;
-
-		for ( int i = 0 ; i < iHorizon ; ++i )
-		{
-			irgCabbage [ i ] = new int [ iVertical ] ;
-
-			for ( int j = 0 ; j < iHorizon ; ++j )
-			{
-				irgCabbage [ i ] [ j ] = 0 ;
-			}
-		}
-
-
 		string strInput ;
 
 		for ( int i = 0 ; i < iCnt ; ++i )
@@ -54,7 +77,6 @@ int main ()
 
 
 		iCnt = 0 ;
-		std :: queue < std :: pair < int , int > > qPrio ;
 	
 
 		while ( ! qCabbage.empty () )
@@ -65,58 +87,14 @@ int main ()
 
 			if ( 1 == irgCabbage [ iX ] [ iY ] )
 			{
-				qPrio.push ( std :: pair < int , int > ( iX , iY ) ) ;
-			}
-
-			qCabbage.pop () ;
-
-
-			if ( ! qPrio.empty () )
-			{
-				while ( ! qPrio.empty () )
-				{
-					iX = qPrio.front ().first ;
-					iY = qPrio.front ().second ;
-
-					irgCabbage [ iX ] [ iY ] = 2 ;
-
-					if ( 0 != iX )
-					{
-						if ( 1 == irgCabbage [ iX - 1 ] [ iY ] )
-							qPrio.push ( std :: pair < int , int > ( iX - 1 , iY ) ) ;
-					}
-					if ( iHorizon != iX + 1 )
-					{
-						if ( 1 == irgCabbage [ iX + 1 ] [ iY ] )
-							qPrio.push ( std :: pair < int , int > ( iX + 1 , iY ) ) ;
-					}
-					if ( 0 != iY )
-					{
-						if ( 1 == irgCabbage [ iX ] [ iY - 1 ] )
-							qPrio.push ( std :: pair < int , int > ( iX , iY - 1 ) ) ;
-					}
-					if ( iVertical != iY + 1 )
-					{
-						if ( 1 == irgCabbage [ iX ] [ iY + 1 ] )
-							qPrio.push ( std :: pair < int , int > ( iX , iY + 1 ) ) ;
-					}
-
-					qPrio.pop () ;
-				}
-
+				addWorm ( iX , iY , iHorizon , iVertical , irgCabbage ) ;
 				++ iCnt ;
 			}
+
+			qCabbage.pop () ;			
 		}
 
 		cout << iCnt << std :: endl ;
-
-
-		for ( int i = 0 ; i < iHorizon ; ++i )
-		{
-			delete [] irgCabbage [ i ] ;
-		}
-
-		delete [] irgCabbage ;
 	}
 	
 
