@@ -10,7 +10,7 @@ Solved.ac - kkanggu
 Day 1
 >#1041 at Silver 1 (Dice)
 
-#### Day 2
+### Day 2
 #1041 Failed. (Tried 9 times)   
 >    I misunderstand about this problem.   
 >    I just thought that I can arrange the dice.   
