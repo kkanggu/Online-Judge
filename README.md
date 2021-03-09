@@ -10,7 +10,7 @@ Solved.ac - kkanggu
 Day 1
 >#1041 at Silver 1 (Dice)
 
-**Day 2**   
+**## Day 2**   
 #1041 Failed. (Tried 9 times)   
 >I misunderstand about this problem.   
 >I just thought that I can arrange the dice.   
@@ -21,6 +21,8 @@ Day 1
 >And I don't why I'm wrong. I'll try this later.   
 
 #1012 ing. (Organic Cabbage)
+
+
 
 Day 3
 >#1012 Complete. (Changed coding style)   
