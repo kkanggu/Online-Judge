@@ -12,4 +12,7 @@ Day 1
 
 Day 2
 >#1041 Failed. (Tried 9 times)   
->#1021 ing. (Cabbage)
+>#1012 ing. (Cabbage)
+
+Day 3
+>#1012 Try
