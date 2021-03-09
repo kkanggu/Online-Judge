@@ -18,6 +18,11 @@ Day 1
 ⋅⋅⋅Dice with 3 Exposed plane is only 4.⋅⋅
 ⋅⋅⋅Dice with 2 Exposed plane is 4 * ( 2N - 3 ).⋅⋅
 ⋅⋅⋅Dice with 1 Exposed plane is ( N-2 ) * ( N-1 ) * 4 + ( N-2 ) * ( N-2 ).⋅⋅
+This is a normal paragraph:
+
+    This is a code block.
+    
+end code block.
 ⋅⋅⋅And I don't why I'm wrong. I'll try this later.⋅⋅
 #1012 ing. (Organic Cabbage)
 
