@@ -23,10 +23,10 @@ Day 2
 
 Day 3
 >#1012 Complete. (Changed coding style)   
->	Online Judge is for short and efficient code.   
->	So I'll use class only if when I need it.   
->	Input every condition, and use DFS.   
->	If left right top bottom is not end, then check and add to DFS.   
+>>Online Judge is for short and efficient code.   
+>>So I'll use class only if when I need it.   
+>>Input every condition, and use DFS.   
+>>If left right top bottom is not end, then check and add to DFS.   
 >#2798 Complete. (BlackJack)
 >	This problem is sum of 3 different cards.   
 >	So I use 3 for functions.   
