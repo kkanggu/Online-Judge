@@ -10,7 +10,7 @@ Solved.ac - kkanggu
 Day 1
 >#1041 at Silver 1 (Dice)
 
-### Day 2
+Day 2
 >#1041 Failed. (Tried 9 times)   
 >>I misunderstand about this problem.   
 >>I just thought that I can arrange the dice.   
@@ -18,7 +18,7 @@ Day 1
 >>Dice with 3 Exposed plane is only 4.   
 >>Dice with 2 Exposed plane is 4 * ( 2N - 3 ).   
 >>Dice with 1 Exposed plane is ( N-2 ) * ( N-1 ) * 4 + ( N-2 ) * ( N-2 ).   
->>And I don't why I'm wrong. I'll try this later.
+>>And I don't why I'm wrong. I'll try this later.   
 >#1012 ing. (Organic Cabbage)
 
 Day 3
