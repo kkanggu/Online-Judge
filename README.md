@@ -12,7 +12,8 @@ Day 1
 
 Day 2
 >#1041 Failed. (Tried 9 times)   
->#1012 ing. (Cabbage)
+>#1012 ing. (Organic Cabbage)
 
 Day 3
->#1012 Try
+>#1012 Complete. (Changed coding style)   
+>#2798 Complete. (BlackJack)
