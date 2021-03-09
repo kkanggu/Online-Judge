@@ -42,7 +42,14 @@ int main ()
 		}
 	}
 
-	for ( int i = pow ( 10 , iDigit ) ; i < pow ( 10 , iDigit + 1 ) ; ++i )
+
+	if ( iNum > 300 )
+		iSum = iNum * 9 / 100 ;
+	else
+		iSum = pow ( 10 , iDigit ) ;
+
+
+	for ( int i = iSum ; i < pow ( 10 , iDigit + 1 ) ; ++i )
 	{
 		iSum = splitSum ( i ) ;
 
