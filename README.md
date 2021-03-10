@@ -50,6 +50,7 @@ Status of Code
 
 ### Day 1
 #1041 at Silver 1 (Dice)
+
 ***
 ### Day 2
 #1041 Failed. (Tried 9 times)   
@@ -62,6 +63,7 @@ Status of Code
 >And I don't why I'm wrong. I'll try this later.   
 
 #1012 ing. (Organic Cabbage)      
+
 ***
 ### Day 3
 #1012 Complete. (Changed coding style)   
@@ -79,4 +81,9 @@ Status of Code
 >But it took times about 60 ms, so I changed the logics.   
 >If the number N is 5 digits, then minum of possible number is N - 5 * 9.   
 >Then it took about 0 ms.
->>>>>>> 945fd1c8bab1c00688de5be3fc156cbf6aba6314
+
+***
+### Day 4
+#7568 First try. (Bulks)   
+>	I couldn't think efficient algorithm to make rank.   
+>	I'll solve this problem tomorrow.
