@@ -35,3 +35,8 @@ Day 3
 >	But it took times about 60 ms, so I changed the logics.   
 >	If the number N is 5 digits, then minum of possible number is N - 5 * 9.   
 >	Then it took about 0 ms.
+
+Day 4
+>#7568 First try. (Bulks)   
+>	I couldn't think efficient algorithm to make rank.   
+>	I'll solve this problem tomorrow.
