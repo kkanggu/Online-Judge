@@ -87,3 +87,12 @@ Status of Code
 #7568 First try. (Bulks)   
 >	I couldn't think efficient algorithm to make rank.   
 >	I'll solve this problem tomorrow.
+
+***
+### Day 5
+#7568 Complete. (Bulks)   
+>	This problem has a problem.   
+>	This shows the rank should be (2, 2, 1, 2, 5), not (2, 2, 1, 2, 3)   
+>	But it was 100% success if I run the code that gives answer (2, 2, 1, 2, 3)   
+>	But many people including me suffered because of this.   
+>	In fact, I fail to sort former problem. I wanna get some advice to solve this. And I saw this problems.

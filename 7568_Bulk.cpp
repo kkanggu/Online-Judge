@@ -27,7 +27,7 @@ int main ()
 		
 		irgHuman [ i ] [ 0 ] = iWeight ;
 		irgHuman [ i ] [ 1 ] = iHeight ;
-		irgHuman [ i ] [ 2 ] = 1 ;
+		irgHuman [ i ] [ 2 ] = 1 ;					// Prio count
 	}
 
 	for ( int i = 0 ; i < iCnt ; ++i )
@@ -62,19 +62,3 @@ int main ()
 
 	return 0 ;
 }
-
-/*
-* 
-* 10
-50 150
-51 151
-	52 152
-		53 153
-			54 154
-			52 154
-		53 153
-			50 156
-				59 159
-51 150
-8 7 5 3 2 2 3 2 1 7
-*/
