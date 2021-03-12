@@ -52,3 +52,11 @@ Solved.ac - kkanggu
 >	But it was 100% success if I run the code that gives answer (2, 2, 1, 2, 3)   
 >	But many people including me suffered because of this.   
 >	In fact, I fail to sort former problem. I wanna get some advice to solve this. And I saw this problems.
+
+***
+### Day 6
+#1018 Complete. (Fill chess board)   
+>	It was easy. I checked every 8x8 board.   
+>	I split into two pieces, which have to be black, and have to be white.   
+>	Then I checked one color's count of each blocks.   
+>	There are 2 ways to fill the chess board, and check either and find minimum value.   
