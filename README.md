@@ -60,6 +60,7 @@ Solved.ac - kkanggu
 >	I split into two pieces, which have to be black, and have to be white.   
 >	Then I checked one color's count of each blocks.   
 >	There are 2 ways to fill the chess board, and check either and find minimum value.   
+
 #1436 Complete. (Movie director shaun)   
 >	I try to find formula, but I can't find it. So I found all of cases ignorantly.   
 >	I assume that if N is 10,000, numbering can't be over 6660000.   
