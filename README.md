@@ -65,3 +65,12 @@ Solved.ac - kkanggu
 >	I try to find formula, but I can't find it. So I found all of cases ignorantly.   
 >	I assume that if N is 10,000, numbering can't be over 6660000.   
 >	I check every cases that numbering includes '666'.
+
+***
+### Day 7
+#15649 Complete. (N & M)   
+>	First, I skipped sorting part, because it seems too easy.   
+>	At first, I designed to use cout. Because of it, the time exceeds.   
+>	So I change to printf, then total measured time is 28ms.   
+>	The time limit is 1 second. But I enter 8 8, it took too much time.   
+>	Maybe the answer of this problem designed not to input too high value.   
