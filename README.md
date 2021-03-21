@@ -73,4 +73,14 @@ Solved.ac - kkanggu
 >	At first, I designed to use cout. Because of it, the time exceeds.   
 >	So I change to printf, then total measured time is 28ms.   
 >	The time limit is 1 second. But I enter 8 8, it took too much time.   
->	Maybe the answer of this problem designed not to input too high value.   
+>	Maybe the answer of this problem designed not to input too high value.
+
+
+***
+### Day 8
+#15650 ~ #15652 Complete. (N & M 2, 3, 4)   
+>	Similar to #15649 (N & M). I'm not gonna write details.
+
+#9663 Complete. (N Queen)   
+>	Backtracking problem.   
+>	I checked the queen is valid as a new function.
