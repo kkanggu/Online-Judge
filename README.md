@@ -84,3 +84,15 @@ Solved.ac - kkanggu
 #9663 Complete. (N Queen)   
 >	Backtracking problem.   
 >	I checked the queen is valid as a new function.
+
+***
+### Day 9
+#2580 Complete. (Sudoku)   
+>	This problem has 2-way solutions.   
+>	First way is Backtracking. The intention of this problem.   
+>	But difficult sudoku needs too much time. That's why I try to solve second way.   
+>	It's to record the number available in each line.   
+>	Sure if provided problem is easy, then this way spend too much time.   
+>	But the harder sudoku, the better efficiency.   
+>	Also there are lots of good ways to solve the sudoku, as expanding the program, this program will become much better.   
+>	But this is judge problem. So I used first way to solve this problem.
