@@ -96,3 +96,10 @@ Solved.ac - kkanggu
 >	But the harder sudoku, the better efficiency.   
 >	Also there are lots of good ways to solve the sudoku, as expanding the program, this program will become much better.   
 >	But this is judge problem. So I used first way to solve this problem.
+
+
+***
+### Day 10
+#14888 Complete. (Insert Operator)   
+>	Backtracking problem   
+>	I checked each operator is available, and if valid, I do backtracking.
