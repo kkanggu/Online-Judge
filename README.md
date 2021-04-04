@@ -103,3 +103,9 @@ Solved.ac - kkanggu
 #14888 Complete. (Insert Operator)   
 >	Backtracking problem   
 >	I checked each operator is available, and if valid, I do backtracking.
+
+***
+### Day 11
+#14889 Fail. (Start & Link)
+>	Backtracking problem   
+>	I solved example, but the submitted code is wrong.
