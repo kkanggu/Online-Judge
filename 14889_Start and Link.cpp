@@ -7,7 +7,6 @@
 #define ABILITYMAX 10000 ;
 
 using std :: string ;
-using std :: cout ;
 using std :: cin ;
 
 void Backtracking ( int irgAbility [] [ 20 ] , int irgTeamList [] [ 10] , int & iMin , int iStartCnt , int iLinkCnt , int iCapacity ) ;
@@ -51,12 +50,12 @@ void Backtracking ( int irgAbility [] [ 20 ] , int irgTeamList [] [ 10 ] , int &
 {
 	if ( ( iCapacity != iStartCnt ) || ( iCapacity != iLinkCnt ) )											// Anything empty
 	{
-		if ( 4 != iStartCnt )																				// Lack of start team
+		if ( iCapacity != iStartCnt )																				// Lack of start team
 		{
 			irgTeamList [ 0 ] [ iStartCnt ] = iStartCnt + iLinkCnt ;
 			Backtracking ( irgAbility , irgTeamList , iMin , iStartCnt + 1 , iLinkCnt , iCapacity ) ;
 		}
-		if ( 4 != iLinkCnt )																				// Lack of link team
+		if ( iCapacity != iLinkCnt )																				// Lack of link team
 		{
 			irgTeamList [ 1 ] [ iLinkCnt ] = iStartCnt + iLinkCnt ;
 			Backtracking ( irgAbility , irgTeamList , iMin , iStartCnt , iLinkCnt + 1 , iCapacity ) ;

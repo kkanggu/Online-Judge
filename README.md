@@ -109,3 +109,21 @@ Solved.ac - kkanggu
 #14889 Fail. (Start & Link)
 >	Backtracking problem   
 >	I solved example, but the submitted code is wrong.
+
+***
+### Day 12
+#14889 Complete. (Start & Link)
+>	I used '4 != ...', and it's only for 8 members.   
+>	So the code I wrote was wrong.
+
+#1003 Complete. (Fibonacci)
+>	Dynamic programming problem.   
+>	First I used bad fibonacci algorithm, it exceeds time limit.   
+>	So I changed to use dynamic programming.
+
+#9184 Complete. (Funny Function)
+>	DP problem.   
+>	I try to understand this recursive function, but I can't figure out formula.   
+>	So I used 21 * 21 * 21 spaces to solve this.   
+>	The code I submitted took about 128ms, some people took only 8ms.   
+>	I saw their code, and they use recursive function. I don't know why.
