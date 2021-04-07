@@ -127,3 +127,19 @@ Solved.ac - kkanggu
 >	So I used 21 * 21 * 21 spaces to solve this.   
 >	The code I submitted took about 128ms, some people took only 8ms.   
 >	I saw their code, and they use recursive function. I don't know why.
+
+
+***
+### Day 13
+#1904 Complete. (Silver III)
+>	DP problem.   
+>	The rule of this problem equals Fibonacci.   
+>	First I used dynamic array, but it took about 8ms & 5924 KB.   
+>	So I changed to use only 3 variables. Then it changed to 4ms & 2016 KB.
+
+#9461 Complete. (Wave Formula)
+>	DP problem.   
+>	Suppose f(n) : The length of triangle   
+>	From f(6), f(n) = f(n-5) + f(n-1)   
+>	I thought int would be enough. But it's wrong. So I change to long long.
+
