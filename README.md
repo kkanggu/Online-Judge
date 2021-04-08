@@ -148,6 +148,6 @@ Solved.ac - kkanggu
 #1149 Complete. (RGB Street)
 >	DP problem.   
 >	This is simillar as pebble problem that I learned last cemester.   
->	Painting red last is f(n,R). Green is f(n,G), Blue is f(n,B).
+>	Painting red last is f(n,R). Green is f(n,G), Blue is f(n,B).   
 >	If I want to get f(n,R), minimum value of ( f(n-1 , G) , f(n-1 , B) ) + red value.   
 >	DP Problem, so I can use only 6 spaces. ( int irgColorMin [ 2 ] [ 3 ] )
