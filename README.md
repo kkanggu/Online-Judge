@@ -151,3 +151,24 @@ Solved.ac - kkanggu
 >	Painting red last is f(n,R). Green is f(n,G), Blue is f(n,B).   
 >	If I want to get f(n,R), minimum value of ( f(n-1 , G) , f(n-1 , B) ) + red value.   
 >	DP Problem, so I can use only 6 spaces. ( int irgColorMin [ 2 ] [ 3 ] )
+
+***
+### Day 15
+#1932 Complete. (Integer Triangle)
+>	DP problem.   
+>	I try to save memory, I used irgTriagleMax [ 501 ] instead of [ 500 ] [ 500 ]   
+>	So I can save memory, but it took about 28ms.   
+>	I think that token processing is the key to save more time.   
+>	If I find better way, maybe it will took less time.
+
+#2579 Complete. (Climbing the Stairs)
+>	DP problem.   
+>	First, I misunderstand the problem. I thouht that climb one step three times in a row is invalid.   
+>	But if I climb two step, then it also counts to one step.
+
+#1463 Complete. (Make 1)
+>	DP problem.   
+>	I couldn't figure out the way to solve this problem.   
+>	Suddenly, I remember that this is dp problem. So I solved it.   
+>	I used dynamic allocation, if I input 2934, CRT error had occured.   
+>	I couldn't find the reason, and I changed to static array with huge memory.
