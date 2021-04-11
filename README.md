@@ -172,3 +172,27 @@ Solved.ac - kkanggu
 >	Suddenly, I remember that this is dp problem. So I solved it.   
 >	I used dynamic allocation, if I input 2934, CRT error had occured.   
 >	I couldn't find the reason, and I changed to static array with huge memory.
+
+***
+### Day 16
+#10844 Complete. (Easy Stairs)
+>	DP problem.   
+>	First I thought that long long is enough to store the data, but it exceeds the limit.   
+>	So I changed to unsigned int, and divide it to 1,000,000,000 every steps.
+
+#2156 Complete. (Wine Tasting)
+>	DP problem.   
+>	This problem is simillar as #1463.
+
+#11053 Complete. (The Longest Increasing Partial Sequence)
+>	DP problem.   
+>	The key to solve this problem is accumulating sequence.   
+>	Because of increasing sequence, I have to check whether effective sequence exist or not.   
+>	If I save 10 200 and I found that 10 20 is valid, then I have to change to 10 20.   
+>	Sure former long sequence already exists. All I have to check is only last number of sequence.
+
+#11054 Complete. (The Longest Bionic Sequence)
+>	DP problem.   
+>	Expansin of #11053, it was hard than I thought.   
+>	I had to think 3 ways. Ascending, descending, ascending changes to descending.   
+>	I thought very wrong, so I debugged too many times.
