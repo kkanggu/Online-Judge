@@ -196,3 +196,13 @@ Solved.ac - kkanggu
 >	Expansin of #11053, it was hard than I thought.   
 >	I had to think 3 ways. Ascending, descending, ascending changes to descending.   
 >	I thought very wrong, so I debugged too many times.
+
+***
+### Day 17
+#2565 Fail. (Electric Wire)
+>	DP problem.   
+>	First, I thought I have to calculate only ascending lis.   
+>	But it was wrong. If I put n, (a,b) a+b=n, then I have to remove n-1 wires.   
+>	So I calculate ascending lis and decending lis, and all the examples shared by users were correct.   
+>	But Baekjoon says I'm wrong in 45% of the progress.   
+>	I'll try it tomorrow.
