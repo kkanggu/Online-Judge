@@ -206,3 +206,10 @@ Solved.ac - kkanggu
 >	So I calculate ascending lis and decending lis, and all the examples shared by users were correct.   
 >	But Baekjoon says I'm wrong in 45% of the progress.   
 >	I'll try it tomorrow.
+
+***
+### Day 18
+#2565 Fail. (Electric Wire)
+>	I was right. I have to check only ascending lis.   
+>	Even if descending, the sequence of number is ascending sequence.   
+>	I failed exactly 54% of the progress. I don't know what to do.
