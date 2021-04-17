@@ -213,3 +213,11 @@ Solved.ac - kkanggu
 >	I was right. I have to check only ascending lis.   
 >	Even if descending, the sequence of number is ascending sequence.   
 >	I failed exactly 54% of the progress. I don't know what to do.
+
+***
+### Day 19
+#9251 End. (LCS)
+>	DP Problem.   
+>	I learned this algorithm last cemester, but I forgot it.   
+>	I tried to find the way, but I couldn't. So I saw the lecture that I learned last cemester.   
+>	It wasy easy. Check every cases with last character.
