@@ -221,3 +221,36 @@ Solved.ac - kkanggu
 >	I learned this algorithm last cemester, but I forgot it.   
 >	I tried to find the way, but I couldn't. So I saw the lecture that I learned last cemester.   
 >	It wasy easy. Check every cases with last character.
+
+***
+### Day 20
+#1912 Fail. (Sequencial Sum)
+>	DP Problem.   
+>	I designed to save memory, so I used array that has only 2 components.   
+>	I failed this, and I'll try it tomorrow.
+
+***
+### Day 21
+#1912 End. (Sequencial Sum)
+>	I found the problem.   
+>	Line 40, sequnce is still sequencial, so I have to check each step is better than old one.   
+>	Original code is bad, because irgMax [ 0 ] is changed to low value.
+
+#12865 End. (Knapsack)
+>	DP Problem.   
+>	I learned this solution with backtracking. I didn't know how to solve this with DP.   
+>	I searched this, and I found dp solution using huge memory.   
+>	I can't find better way, so I used it. This take too many memories.
+
+#11047 End. (Coin 0)
+>	Greedy Algorithm   
+>	Typical greedy algorithm problem. easy
+\
+***
+### Day 22
+#1931 Fail. (Sequencial Sum)
+>	Greedy Algrithm   
+>	I thought very wrong. I try to make array that can be timetable, and try to use it.   
+>	But the limit of time is 2^31-1. So I can't use this.   
+>	Before recognizing that, I used tuple to use shortest time first.   
+>	I commit my wrong code. And I'll change it and solve.
