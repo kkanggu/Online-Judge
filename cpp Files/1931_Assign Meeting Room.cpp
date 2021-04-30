@@ -1,29 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <tuple>
 #pragma warning(disable:4996)
 
 using std :: string ;
 using std :: cin ;
 using std :: cout ;
 using std :: vector ;
-using std :: tuple ;
-using std :: get ;
+using std :: pair ;
 
-typedef tuple < unsigned int , unsigned int , unsigned int > tui ;
+typedef pair < unsigned int , unsigned int > uiPair ;
 
-bool bCompare ( const tui & a ,
-				const tui & b ) ;
+bool bCompare ( const uiPair & a ,
+				const uiPair & b ) ;
 
-int iDoGreedy ( vector < tui > & vMeetTime , int iNum ) ;
+int iDoGreedy ( vector < uiPair > & vMeetTime ) ;
 
 int main ()
 {
 	int iNum = 0 ;
 	int iValue = 0 ;
-	vector < tui > vMeetTime ;
-	int iCnt = 0 ;
+	vector < uiPair > vMeetTime ;
 	unsigned int iInput1 = 0 ;
 	unsigned int iInput2 = 0 ;
 
@@ -35,41 +32,50 @@ int main ()
 	{
 		scanf ( "%u %u" , & iInput1 , & iInput2 ) ;
 
-		vMeetTime.push_back ( std :: make_tuple ( iInput1 , iInput2 , ( unsigned int ) iInput2 - iInput1 ) ) ;
+		vMeetTime.push_back ( std :: make_pair ( iInput1 , iInput2 ) ) ;
 	}
 
 	std :: sort ( vMeetTime.begin () , vMeetTime.end () , bCompare ) ;
 
-	iDoGreedy ( vMeetTime , iNum ) ;
-
-	for ( int i = 0 ; i < iNum ; ++i )
-	{
-		printf ( "%u %u %u\n" , get < 0 > ( vMeetTime.at ( i ) ) , get < 1 > ( vMeetTime.at ( i ) ) , get < 2 > ( vMeetTime.at ( i ) ) ) ;
-	}
+	cout << iDoGreedy ( vMeetTime ) ;
 
 
 	return 0 ;
 }
 
-bool bCompare ( const tui & a ,
-				const tui & b )
+bool bCompare ( const uiPair & a ,
+				const uiPair & b )
 {
-	return ( get < 2 > ( a ) < get < 2 > ( b ) ) ;
+	if ( a.second < b.second )
+	{
+		return true ;
+	}
+	else if ( ( a.second == b.second ) && ( a.first < b.first ) )
+	{
+		return true ;
+	}
+	else
+	{
+		return false ;
+	}
 }
 
-int iDoGreedy ( vector < tui > & vMeetTime , int iNum )
+int iDoGreedy ( vector < uiPair > & vMeetTime )
 {
-	int i = 0 ;
-	int * ipMeetTime ;
-	int iMax = 0 ;
+	int iCnt = 0 ;
+	unsigned int uiEndTime = 0 ;
 
 
 
-	iMax = get < 1 > ( vMeetTime.back () ) ;
-
-
-	while ( i != iNum )
+	for ( vector < uiPair > :: iterator iter = vMeetTime.begin () ; iter != vMeetTime.end () ; ++ iter )
 	{
-
+		if ( ( uiEndTime <= iter -> second ) && ( uiEndTime <= iter -> first ) )
+		{
+			uiEndTime = iter -> second ;
+			++ iCnt ;
+		}
 	}
+
+
+	return iCnt ;
 }

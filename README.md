@@ -245,12 +245,27 @@ Solved.ac - kkanggu
 #11047 End. (Coin 0)
 >	Greedy Algorithm   
 >	Typical greedy algorithm problem. easy
-\
+
 ***
 ### Day 22
-#1931 Fail. (Sequencial Sum)
+#1931 Fail. (Assign Meeting Room)
 >	Greedy Algrithm   
 >	I thought very wrong. I try to make array that can be timetable, and try to use it.   
 >	But the limit of time is 2^31-1. So I can't use this.   
 >	Before recognizing that, I used tuple to use shortest time first.   
 >	I commit my wrong code. And I'll change it and solve.
+
+***
+### Day 23
+#1931 End. (Assign Meeting Room)
+>	I used greedy algorithm, that only compare the end time of meeting.   
+>	It took about 40ms. I think sorting algorithm took lots of time.
+
+#11399 End. (ATM)
+>	Greedy Algorithm   
+>	Too easy. Sort the table and add. First have to add iNum times, second iNum - 1 times, ... last 1 time.
+
+#1154 Fail. (Lost Parenthesis)
+>	Greedy Algorithm   
+>	Try + first, and - everthing.   
+>	I failed to handle vector. I'll fix this.
