@@ -265,7 +265,21 @@ Solved.ac - kkanggu
 >	Greedy Algorithm   
 >	Too easy. Sort the table and add. First have to add iNum times, second iNum - 1 times, ... last 1 time.
 
-#1154 Fail. (Lost Parenthesis)
+#1541 Fail. (Lost Parenthesis)
 >	Greedy Algorithm   
 >	Try + first, and - everthing.   
 >	I failed to handle vector. I'll fix this.
+
+***
+### Day 23
+#1541 End. (Lost Parenthesis)
+>	I used only vector.   
+>	Tried + first, and - everything. It took about 0ms.
+
+#13305 End. (Gas Station)
+>	Greedy Algorithm.   
+>	I used pair and vector. Sort the price & index pair, and do greedy.   
+>	It took about 84ms and 8196KB.   
+>	And I saw brilliant easy solution.   
+>	During processing input, do greedy. If input is higher, keep process. If input is lower, then stop using former price and use new price.   
+>	That solution just took about 40ms and 1388KB. I learned good solution.

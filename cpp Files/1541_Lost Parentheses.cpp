@@ -11,10 +11,8 @@ int main ()
 {
 	int iNum = 0 ;
 	vector < int > vNum ;
-	int irgParen [ 49 ] = { 0 , } ;
-	int iCnt = 0 ;															// The cnt of number, temp variable
-	char cInput [ 50 ] ;
-	vector < int > :: iterator iter ;
+	vector < char > vParen ;
+	char cInput [ 60 ] ;
 
 
 
@@ -31,45 +29,40 @@ int main ()
 		{
 			if ( '+' == cInput [ i ] )										// If +, 1
 			{
-				irgParen [ iCnt ] = 1 ;
+				vParen.push_back ( '+' ) ;
 			}
 			else															// If -, 2
 			{
-				irgParen [ iCnt ] = 2 ;
+				vParen.push_back ( '-' ) ;
 			}
 
 			vNum.push_back ( iNum ) ;
 			iNum = 0 ;
-			++ iCnt ;
 		}
 	}
 
-//	for ( iter = vNum.begin () ; iter != vNum.end () ; ++ iter )
-	iter = vNum.begin () ;
-	iCnt = 0 ;
+	vNum.push_back ( iNum ) ;
 
-	for ( int i = 0 ; i < vNum.size () ; ++i )
+
+	for ( int i = 0 ; i < vParen.size () ; ++i )
 	{
-		++ iCnt ;
-
-		if ( irgParen [ i ] == 1 )
+		if ( '+' == vParen [ i ] )
 		{
 			vNum [ i ] = vNum [ i ] + vNum [ i + 1 ] ;
-			iter += iCnt + 1 ;
-			vNum.erase ( iter ) ;
-			iCnt = 0 ;
+			vNum.erase ( vNum.begin () + i + 1 ) ;
+			vParen.erase ( vParen.begin () + i ) ;
+
+			--i ;
 		}
 	}
 	while ( 1 != vNum.size () )
 	{
 		vNum [ 0 ] = vNum [ 0 ] - vNum [ 1 ] ;
-		iter = vNum.begin () + 1 ;
-		vNum.erase ( iter ) ;
+		vNum.erase ( vNum.begin () + 1 ) ;
 	}
 
 
 	cout << vNum.at ( 0 ) ;
-
 
 
 	return 0 ;
