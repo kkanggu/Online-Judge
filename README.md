@@ -271,7 +271,7 @@ Solved.ac - kkanggu
 >	I failed to handle vector. I'll fix this.
 
 ***
-### Day 23
+### Day 24
 #1541 End. (Lost Parenthesis)
 >	I used only vector.   
 >	Tried + first, and - everything. It took about 0ms.
@@ -283,3 +283,26 @@ Solved.ac - kkanggu
 >	And I saw brilliant easy solution.   
 >	During processing input, do greedy. If input is higher, keep process. If input is lower, then stop using former price and use new price.   
 >	That solution just took about 40ms and 1388KB. I learned good solution.
+
+***
+### Day 25
+#5086 End. (Multiple and Divisor)
+>	Integer theory and Combinatorics   
+>	Too easy
+
+#1037 End. (Divisor)
+>	Integer theory and Combinatorics   
+>	Too easy
+
+#2609 End. (GCD and LCM)
+>	Integer theory and Combinatorics   
+>	Too easy
+
+#1934 End. (LCM with Euclidean)
+>	Integer theory and Combinatorics   
+>	Get LCM with Euclidean algorithm. Too easy
+
+#2981 ing. (Inspection)
+>	Integer theory and Combinatorics   
+>	Get LCM and print all the divisors of LCM.   
+>	I have to get all the divisors. The previous process was complete.
