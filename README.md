@@ -306,3 +306,11 @@ Solved.ac - kkanggu
 >	Integer theory and Combinatorics   
 >	Get LCM and print all the divisors of LCM.   
 >	I have to get all the divisors. The previous process was complete.
+
+***
+### Day 26
+#2981 End. (Inspeciton)
+>	Integer theory and Combinatorics   
+>	First, get GCD with the difference of each elements.   
+>	Then get all the divisors, and erase multiple elements. If GCD is n^2, then vector is ... n n ...   
+>	Last, print divisors. It's not easy problem, but it was a fun.
