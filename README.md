@@ -314,3 +314,25 @@ Solved.ac - kkanggu
 >	First, get GCD with the difference of each elements.   
 >	Then get all the divisors, and erase multiple elements. If GCD is n^2, then vector is ... n n ...   
 >	Last, print divisors. It's not easy problem, but it was a fun.
+
+***
+### Day 27
+#3036 End. (Ring)
+>	Integer theory and Combinatorics   
+>	Get GCD with first input and other input, and print input / GCD. Too easy
+
+#11050 End. (Binomial Coefficient)
+>	Integer theory and Combinatorics   
+>	Same as Combination. Too easy
+
+#11051 End. (Binomial Coefficient 2)
+>	Integer theory and Combinatorics   
+>	Too big size, even long long can't put it. So I had to use Pascal's Triangle.
+
+#1050 End. (Construct Bridge)
+>	Integer theory and Combinatorics   
+>	Use Pascal's Triangle. Reuse #11051.
+
+#9375 End. (Fashion King Shin)
+>	Integer theory and Combinatorics   
+>	Just number of case problem. Count by clothes, and just multiply it. Easy
