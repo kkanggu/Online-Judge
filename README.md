@@ -336,3 +336,19 @@ Solved.ac - kkanggu
 #9375 End. (Fashion King Shin)
 >	Integer theory and Combinatorics   
 >	Just number of case problem. Count by clothes, and just multiply it. Easy
+
+***
+### Day 28
+#1676 End. (0 of Factorial)
+>	Integer theory and Combinatorics   
+>	Too easy. I just have to count 5. 10 is 2 * 5, and 2 is more than 5.
+
+#2004 End. (0 of Combination)
+>	Integer theory and Combinatorics   
+>	First, I tried to calculate efficiently. But it was too complex.   
+>	So I changed the way. calculate 1 to N, 1 to N - M, 1 to M.   
+>	Sometimes it's better not to be efficient.
+
+#2630 End. (Create Colored Paper)
+>	Divide and Conquer   
+>	It was easy. Check big paper, if it's not one paper, divide it in 4 pieces. Do former steps again.
