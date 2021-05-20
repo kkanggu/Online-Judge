@@ -352,3 +352,25 @@ Solved.ac - kkanggu
 #2630 End. (Create Colored Paper)
 >	Divide and Conquer   
 >	It was easy. Check big paper, if it's not one paper, divide it in 4 pieces. Do former steps again.
+
+***
+### Day 29
+#1992 End. (Quad Tree)
+>	Divide and Conquer   
+>	Similar as #2630. Change the sequence that divide into 4 pieces, and add print '(' and ')'.
+
+#1780 End. (Number of Paper)
+>	Divide and Conquer   
+>	Similar as #2630. #2630 is 2^n paper, this is 3^n paper. I had to change a few lines.   
+>	Maximum array size if [ 2187 ] [ 2187 ], so former token process using sstream took too much time.   
+>	I changed to scanf, and simplified condition loop. 852ms changed to 572ms.
+
+***
+### Day 30
+#1629 End. (Multiply)
+>	Divide and Conquer   
+>	I approached with using binary. Maximum is about 2b(2000m), so I thought binary is the key to solve.   
+>	array [ 0 ] is B, [ 1 ] is B^2 % C, [ 2 ] is [ 1 ]^2 % C...   
+>	If input is 11 22 33, then the answer is 11^22 % 33.   
+>	22 is 10110 in binary. I added each result into array, and multiply each members.   
+>	Multiply [ 1 ] [ 2 ] [ 4 ] , with dividing into C.
