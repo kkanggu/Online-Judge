@@ -374,3 +374,10 @@ Solved.ac - kkanggu
 >	If input is 11 22 33, then the answer is 11^22 % 33.   
 >	22 is 10110 in binary. I added each result into array, and multiply each members.   
 >	Multiply [ 1 ] [ 2 ] [ 4 ] , with dividing into C.
+
+***
+### Day 31
+#11401 ing. (Binomial Coefficient 3)
+>	Divide and Conquer   
+>	I have to use Fermat's little Theorem. Without hint, I'll not find out the way.   
+>	My code has some problem, it don't work well. I'll try tomorrow.
