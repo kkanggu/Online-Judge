@@ -381,3 +381,22 @@ Solved.ac - kkanggu
 >	Divide and Conquer   
 >	I have to use Fermat's little Theorem. Without hint, I'll not find out the way.   
 >	My code has some problem, it don't work well. I'll try tomorrow.
+
+***
+### Day 32
+#11401 End. (Binomial Coefficient 3)
+>	Divide and Conquer   
+>	I found the problem. I used 'iK = Prime - 2', and iK change to Prime, not Prime - 2.   
+>	I don't why. I fix this, and the problem was solved.
+
+#2740 End. (Multiply Matrix)
+>	Divide and Conquer   
+>	I solved this problem using 3 for loop.   
+>	I'm correct, but there's more effective way. It's Strassen algorithm.   
+>	Maximum size of this problem is 100, so I can use for loop. But if it's more huge, I need to use Strassen algorithm and divide and conquer.
+
+#10830 ing. (Matrix Squared)
+>	Divide and Conquer   
+>	I have to use Strassen algorithm. But it has a problem.   
+>	I have to make too many small matrix, and it need too many coding for efficiency.   
+>	Maybe I thought wrong. I have to find more easy and efficient way.

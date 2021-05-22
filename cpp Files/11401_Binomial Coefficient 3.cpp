@@ -36,7 +36,8 @@ int main ()
 	}
 
 	llOut = 1 ;
-	iK = Prime - 2 ;
+	iK = 1000000005 ;
+	// iK = Prime - 2 ; <--- iK = Prime. why??????
 
 	for ( int i = 0 ; i < 32 ; ++i )
 	{
@@ -49,7 +50,7 @@ int main ()
 
 		if ( 1 == iK )
 		{
-			llOut = llOut * irgExtra [ i + 1 ] % iK ;
+			llOut = llOut * irgExtra [ i + 1 ] % Prime ;
 
 			break ;
 		}
