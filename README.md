@@ -400,3 +400,18 @@ Solved.ac - kkanggu
 >	I have to use Strassen algorithm. But it has a problem.   
 >	I have to make too many small matrix, and it need too many coding for efficiency.   
 >	Maybe I thought wrong. I have to find more easy and efficient way.
+
+***
+### Day 33
+#10830 End. (Matrix Squared)
+>	Divide and Conquer   
+>	I thought very wrong. If I use Strassen algorithm, this program will be too heavy and big.   
+>	I have to overload plus & multiply matrix functions.   
+>	Also having M1 to M7 will took too much time. I just multiplied common way.
+
+#11444 End. (Fibonacci 6)
+>	Divide and Conquer   
+>	I had to use matrix.   
+>	( 1 1 )^n = ( Fn+1 Fn )   
+>	( 1 0 )       ( Fn     Fn-1 )   
+>	I used this algorithm.
