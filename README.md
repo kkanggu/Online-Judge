@@ -415,3 +415,10 @@ Solved.ac - kkanggu
 >	( 1 1 )^n = ( Fn+1 Fn )   
 >	( 1 0 )       ( Fn     Fn-1 )   
 >	I used this algorithm.
+
+***
+### Day 34
+#6549 ing. (Biggest Rectangle in Histogram)
+>	Divide and Conquer   
+>	I can't find the way to use divide and conquer, so I used stack.   
+>	I can solve ascending, but descending has a problem. I'll fix this.
