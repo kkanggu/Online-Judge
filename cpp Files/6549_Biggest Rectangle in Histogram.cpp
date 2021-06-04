@@ -17,11 +17,12 @@ int main ()
 	long long llTemp = 0 ;
 	long long llArea = -1 ;
 	stack < Rect > sRect ;
+	Rect rectTop ;
 	Rect rectTemp ;
 
 
 
-	rectTemp.iHeight = -1 ;
+	rectTop.iHeight = -1 ;
 
 	while ( 0 != iN )
 	{
@@ -40,37 +41,50 @@ int main ()
 		{
 			scanf ( "%d" , & iHeight ) ;
 
-			while ( rectTemp.iHeight > iHeight )
+
+			if ( rectTop.iHeight < iHeight )					// Ascending, just push
 			{
-				llTemp = rectTemp.iHeight * ( i - rectTemp.iIndex ) ;
+				rectTop.iIndex = i ;
+				rectTop.iHeight = iHeight ;
 
-				if ( llArea < llTemp )
-				{
-					llArea = llTemp ;
-				}
-
-				sRect.pop () ;
-
-				if ( ! sRect.empty () )
-				{
-					rectTemp = sRect.top () ;
-				}
-				else
-				{
-					rectTemp.iHeight = -1 ;
-				}
+				sRect.push ( rectTop ) ;
 			}
+			else if ( rectTop.iHeight > iHeight )				// Descending, 4 5 3 -> 4 3 3 -> 3 3 3.
+			{
+				while ( rectTop.iHeight > iHeight )
+				{
+					llTemp = ( long long ) rectTop.iHeight * ( i - rectTop.iIndex ) ;
 
-			rectTemp.iIndex = i ;
-			rectTemp.iHeight = iHeight ;
+					if ( llArea < llTemp )
+					{
+						llArea = llTemp ;
+					}
 
-			sRect.push ( rectTemp ) ;
+					sRect.pop () ;
+
+					rectTemp.iIndex = rectTop.iIndex ;
+					rectTemp.iHeight = iHeight ;
+
+					if ( ! sRect.empty () )
+					{
+						rectTop = sRect.top () ;
+					}
+					else
+					{
+						rectTop.iHeight = -1 ;
+					}
+				}
+
+				rectTop = rectTemp ;
+
+				sRect.push ( rectTop ) ;
+			}
 		}
-		while ( ! sRect.empty () )
+		while ( ! sRect.empty () )								// Calculate remaining ascending rectangles
 		{
-			rectTemp = sRect.top () ;
+			rectTop = sRect.top () ;
 
-			llTemp = rectTemp.iHeight * ( iN - rectTemp.iIndex ) ;
+			llTemp = ( long long ) rectTop.iHeight * ( iN - rectTop.iIndex ) ;
 
 			if ( llArea < llTemp )
 			{
@@ -81,11 +95,11 @@ int main ()
 
 			if ( ! sRect.empty () )
 			{
-				rectTemp = sRect.top () ;
+				rectTop = sRect.top () ;
 			}
 			else
 			{
-				rectTemp.iHeight = -1 ;
+				rectTop.iHeight = -1 ;
 			}
 		}
 		

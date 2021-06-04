@@ -422,3 +422,13 @@ Solved.ac - kkanggu
 >	Divide and Conquer   
 >	I can't find the way to use divide and conquer, so I used stack.   
 >	I can solve ascending, but descending has a problem. I'll fix this.
+
+***
+### Day 35
+#6549 End. (Biggest Rectangle in Histogram)
+>	Divide and Conquer   
+>	I found the way. If ascending, just push and calculate later.   
+>	If descending, then calculate high rectangle, and transfer it to low.   
+>	I got 1 3 5 and input 2. Calculate 5, then change to 1 3 and input 2.   
+>	Still descending, so calculate 3 and change to 1 and input 2.   
+>	Then stack has 1 2. And calculate this later.
