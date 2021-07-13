@@ -432,3 +432,10 @@ Solved.ac - kkanggu
 >	I got 1 3 5 and input 2. Calculate 5, then change to 1 3 and input 2.   
 >	Still descending, so calculate 3 and change to 1 and input 2.   
 >	Then stack has 1 2. And calculate this later.
+
+***
+### Day 36
+#2261 Fail. (The Closest Dots)
+>	Divide and Conquer || Line Sweeping   
+>	I used divide and conquer, and I failed.   
+>	At 11%, time exceeds. I'll fix the problem.
