@@ -439,3 +439,10 @@ Solved.ac - kkanggu
 >	Divide and Conquer || Line Sweeping   
 >	I used divide and conquer, and I failed.   
 >	At 11%, time exceeds. I'll fix the problem.
+
+***
+### Day 37
+#2261 Fail. (The Closest Dots)
+>	Line Sweeping   
+>	I still failed at 11% with time exceed, so I changed to use line sweeping.   
+>	But, still at 11%, time exceeds. I'll fix it again.

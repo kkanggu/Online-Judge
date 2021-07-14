@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -7,14 +6,16 @@ import java.util.Scanner;
 
 public class OJ_2261_TheClosestDots
 {
-	static int iMin = Integer.MAX_VALUE ;
-	
-	
 	public static void main ( String [] args )
 	{
 		Scanner sc = new Scanner ( System.in ) ;
+		int iMin = Integer.MAX_VALUE ;
 		int iCnt = sc.nextInt () ;
 		int irgDot [] [] = new int [ iCnt ] [ 2 ] ;
+		int iRightBound ;
+		int iUpperBound ;
+		int iLowerBound ;
+		int j ;
 		
 		
 		
@@ -39,95 +40,62 @@ public class OJ_2261_TheClosestDots
 						}
 					}
 				} ) ;
-				
-				getMin ( irgDot , 0 , iCnt - 1 ) ;
-				
-				System.out.println ( iMin ) ;
-	}
-	
-	public static void getMin ( int irgDot [] [] , int iStart , int iEnd )
-	{
-		if ( 0 == ( iEnd - iStart ) )		// 1 Value
+		
+		iMin = iGetDistance ( irgDot [ 0 ] [ 0 ] , irgDot [ 0 ] [ 1 ] , irgDot [ 1 ] [ 0 ] , irgDot [ 1 ] [ 1 ] ) ;
+		
+		
+		for ( int i = 0 ; i < iCnt - 1 ; ++i )
 		{
-			// return Integer.MAX_VALUE
-		}
-		else if ( 1 == ( iEnd - iStart ) )	// 2 Values
-		{
-			iMin = Math.min ( iMin , iGetDistance ( irgDot [ iStart ] [ 0 ] , irgDot [ iStart ] [ 1 ] , irgDot [ iEnd ] [ 0 ] , irgDot [ iEnd ] [ 1 ] ) ) ;
-		}
-		else if ( 2 == ( iEnd - iStart ) )	// 3 Values
-		{
-			iMin = Math.min ( iMin , iGetDistance ( irgDot [ iStart ] [ 0 ] , irgDot [ iStart ] [ 1 ] , irgDot [ iStart + 1 ] [ 0 ] , irgDot [ iStart + 1 ] [ 1 ] ) ) ;
-			iMin = Math.min ( iMin , iGetDistance ( irgDot [ iStart ] [ 0 ] , irgDot [ iStart ] [ 1 ] , irgDot [ iEnd ] [ 0 ] , irgDot [ iEnd ] [ 1 ] ) ) ;
-			iMin = Math.min ( iMin , iGetDistance ( irgDot [ iStart + 1 ] [ 0 ] , irgDot [ iStart + 1 ] [ 1 ] , irgDot [ iEnd ] [ 0 ] , irgDot [ iEnd ] [ 1 ] ) ) ;
-		}
-		else								// More than 4 Values
-		{
-			int iPivotX = irgDot [ ( iStart + iEnd ) / 2 ] [ 0 ] ;
-			int iTempStart = iStart ;
-			int iTempEnd = iEnd ;
-			ArrayList < Integer > LeftList = new ArrayList < Integer > () ;
-			ArrayList < Integer > RightList = new ArrayList < Integer > () ;
+			iRightBound = ( int ) ( irgDot [ i ] [ 0 ] + Math.sqrt ( iMin - 1 ) ) ;
+			iLowerBound = ( int ) ( irgDot [ i ] [ 1 ] - Math.sqrt ( iMin - 1 ) ) ;
+			iUpperBound = ( int ) ( irgDot [ i ] [ 1 ] + Math.sqrt ( iMin - 1 ) ) ;
+			j = i + 1 ;
 			
-			
-			
-			getMin ( irgDot , iStart , ( iStart + iEnd ) / 2 ) ;
-			getMin ( irgDot , ( iStart + iEnd ) / 2 + 1 , iEnd ) ;
-			
-			if ( 0 == iMin )
+			if ( j == iCnt )
 			{
-				System.out.println ( 0 ) ;
+				System.out.println ( iMin ) ;
 				System.exit ( 0 ) ;
 			}
 			
-			while ( iTempStart <= ( iStart + iEnd ) / 2 )
+			while ( irgDot [ j ] [ 0 ] <= iRightBound )
 			{
-		//		if ( ( Math.pow ( Math.abs ( irgDot [ iTempStart ] [ 0 ] - iPivotX ) + 1 , 2 ) < iMin ) )
-				if ( ( irgDot [ iTempStart ] [ 0 ] - iPivotX ) * ( irgDot [ iTempStart ] [ 0 ] - iPivotX ) < iMin )
-		//				&& ( Math.pow ( Math.abs ( irgDot [ iTempStart ] [ 1 ] - iPivotY ) , 2 ) < iMin ) )
+				if ( ( irgDot [ j ] [ 1 ] >= iLowerBound ) && ( irgDot [ j ] [ 1 ] <= iUpperBound ) )
 				{
-					LeftList.add ( iTempStart ) ;
-				}
-				
-				++ iTempStart ;
-			}
-			while ( iTempEnd > ( iStart + iEnd ) / 2 )
-			{
-		//		if ( ( Math.pow ( Math.abs ( irgDot [ iTempEnd ] [ 0 ] - iPivotX ) , 2 ) < iMin ) )
-				if ( ( irgDot [ iTempEnd ] [ 0 ] - iPivotX ) * ( irgDot [ iTempEnd ] [ 0 ] - iPivotX ) < iMin )
-		//				&& ( Math.pow ( Math.abs ( irgDot [ iTempEnd ] [ 1 ] - iPivotY ) , 2 ) < iMin ) )
-				{
-					RightList.add ( iTempEnd ) ;
-				}
-				
-				-- iTempEnd ;
-			}
-			
-			for ( Integer i : LeftList )
-			{
-				for ( Integer j : RightList )
-				{
-		//			if ( Math.pow ( Math.abs ( irgDot [ i ] [ 1 ] - irgDot [ j ] [ 1 ] ) , 2 ) < iMin )
-					if ( ( irgDot [ i ] [ 1 ] - irgDot [ j ] [ 1 ] ) * ( irgDot [ i ] [ 1 ] - irgDot [ j ] [ 1 ] ) < iMin )
+					iMin = Math.min ( iMin , iGetDistance ( irgDot [ i ] [ 0 ] , irgDot [ i ] [ 1 ] , irgDot [ j ] [ 0 ] , irgDot [ j ] [ 1 ] ) ) ;
+					
+					if ( 0 == iMin )
 					{
-						if ( irgDot [ i ] [ 0 ] == irgDot [ j ] [ 0 ] )
+						System.out.println ( 0 ) ;
+						System.exit ( 0 ) ;
+					}
+					
+					iRightBound = ( int ) ( irgDot [ i ] [ 0 ] + Math.sqrt ( iMin - 1 ) ) ;
+					iLowerBound = ( int ) ( irgDot [ i ] [ 1 ] - Math.sqrt ( iMin - 1 ) ) ;
+					iUpperBound = ( int ) ( irgDot [ i ] [ 1 ] + Math.sqrt ( iMin - 1 ) ) ;
+					
+					++j ;
+				}
+				else
+				{
+					while ( ( irgDot [ j ] [ 1 ] > iUpperBound ) || ( irgDot [ j ] [ 1 ] < iLowerBound ) )
+					{
+						++j ;
+						
+						if ( j == iCnt )
 						{
-							iMin = Integer.min ( iMin , ( irgDot [ i ] [ 1 ] - irgDot [ j ] [ 1 ] ) * ( irgDot [ i ] [ 1 ] - irgDot [ j ] [ 1 ] ) ) ;
-						}
-						else if ( irgDot [ i ] [ 1 ] == irgDot [ j ] [ 1 ] )
-						{
-							iMin = Integer.min ( iMin , ( irgDot [ i ] [ 0 ] - irgDot [ j ] [ 0 ] ) * ( irgDot [ i ] [ 0 ] - irgDot [ j ] [ 0 ] ) ) ;
-						}
-						else
-						{
-							iMin = Integer.min ( iMin , iGetDistance ( irgDot [ i ] [ 0 ] , irgDot [ i ] [ 1 ] , irgDot [ j ] [ 0 ] , irgDot [ j ] [ 1 ] ) ) ;
+							break ;
 						}
 					}
 				}
+				
+				if ( j == iCnt )
+				{
+					break ;
+				}
 			}
-			
-			// Cross check
 		}
+		
+		System.out.println ( iMin ) ;
 	}
 	
 	private static int iGetDistance ( int iX1 , int iY1 , int iX2 , int iY2 )
