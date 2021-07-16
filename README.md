@@ -446,3 +446,15 @@ Solved.ac - kkanggu
 >	Line Sweeping   
 >	I still failed at 11% with time exceed, so I changed to use line sweeping.   
 >	But, still at 11%, time exceeds. I'll fix it again.
+
+***
+### Day 38
+#1920 End. (Find Number)
+>	Binary Search   
+>	I changed to use BufferReader instead of Scanner.   
+>	I reduced memory about 60%, also reduced time about 50-60%.
+
+#10816 End. (Number Card 2)
+>	Binary Search   
+>	System.out.println took too much time, so I changed it.   
+>	I used BufferedWriter and StringBuilder either, StringBuilder took less time and memory.
