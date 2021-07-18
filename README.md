@@ -458,3 +458,18 @@ Solved.ac - kkanggu
 >	Binary Search   
 >	System.out.println took too much time, so I changed it.   
 >	I used BufferedWriter and StringBuilder either, StringBuilder took less time and memory.
+
+***
+### Day 39
+#1654 End. (Cut the LAN)
+>	Binary Search   
+>	Sort the array, and do binary search with the highest value.
+
+#2805 End. (Cut the Tree)
+>	Binary Search   
+>	Sort the array, and do binary search with the highest value.
+
+#2110 End. (Install the Router)
+>	Binary Search   
+>	Sort the array, and do binary search with checking router can be placed.   
+>	To check the routher can be placed, I have to place every router.
