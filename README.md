@@ -473,3 +473,9 @@ Solved.ac - kkanggu
 >	Binary Search   
 >	Sort the array, and do binary search with checking router can be placed.   
 >	To check the routher can be placed, I have to place every router.
+
+***
+### Day 40
+#1300 Fail. (The Kth Number)
+>	Binary Search   
+>	I failed. I'll solve this.
