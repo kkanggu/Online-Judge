@@ -479,3 +479,24 @@ Solved.ac - kkanggu
 #1300 Fail. (The Kth Number)
 >	Binary Search   
 >	I failed. I'll solve this.
+
+***
+### Day 41
+#1300 End. (The Kth Number)
+>	Binary Search   
+>	The problem was Integer. The type of variable that count numbers is int.   
+>	But, It can be over INT_MAX. So I changed to long, and it works.
+
+#12015 End. (LIS 2)
+>	Binary Search   
+>	Solution is similar as #11053.   
+>	At #11053, I used array to store. But the data can be 1m, so I used vector.   
+>	Also vector can be huge, I changed linear search to binary search.
+
+#9765 End. (6 Equations)
+>	Math   
+>	Easy math problem. Setting the condition is important.
+
+#11066 Fail. (Merge Files)
+>	DP   
+>	I need to find best merge algorithm. Merging the least file size is not best algorithm.

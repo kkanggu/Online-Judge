@@ -15,14 +15,16 @@ public class OJ_1300_KthNumber
 		long lRight = ( long ) iN * iN ;
 		long lValue = 0 ;
 		long lIndex = 0 ;
-		int iTempCnt = 0 ;
+		long lTempCnt = 0 ;
 		
 		
+		
+		-- iK ;
 		
 		while ( lLeft <= lRight )
 		{
 			lIndex = ( lLeft + lRight ) / 2 ;
-			iTempCnt = 0 ;							// Cnt of numbers lower than iIndex
+			lTempCnt = 0 ;							// Cnt of numbers <= iIndex
 			
 			
 			for ( int i = 1 ; i <= iN ; ++i )
@@ -34,17 +36,16 @@ public class OJ_1300_KthNumber
 				
 				if ( lIndex / i >= iN )
 				{
-					iTempCnt += iN ;
+					lTempCnt += iN ;
 				}
 				else
 				{
-					iTempCnt += lIndex / i ;
+					lTempCnt += lIndex / i ;
 				}
 			}
 			
-			if ( iTempCnt <= iK )
+			if ( lTempCnt <= iK )
 			{
-				lValue = lIndex ;
 				lLeft = lIndex + 1 ;
 			}
 			else
