@@ -1,59 +1,73 @@
-import java.awt.font.ImageGraphicAttribute;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.util.Vector;
 
 
 
 public class OJ_11066_MergeFiles
 {
+	static int [] [] idprgMemorization ;
+	static int [] irgSum ;
+	
 	public static void main ( String[] args ) throws IOException
 	{
 		BufferedReader br = new BufferedReader ( new InputStreamReader ( System.in ) ) ;
-		StringTokenizer st ;
 		int iN = Integer.parseInt ( br.readLine () ) ;
 		int iFiles = 0 ;
-		Vector < Integer > vFile = new Vector < Integer > () ;
+		int [] irgFile ;
 		int iTime = 0 ;
-		int iIndex = 0 ;
-		int iTemp = 0 ;
 		
 		
 		
 		for ( int i = 0 ; i < iN ; ++i )
 		{
-			iTime = 0 ;
 			iFiles = Integer.parseInt ( br.readLine () ) ;
-			st = new StringTokenizer ( br.readLine () ) ;
+			irgFile = Arrays.stream( br.readLine ().split ( " " ) ).mapToInt ( Integer :: parseInt ).toArray () ;
+			idprgMemorization = new int [ iFiles ] [ iFiles ] ;
+			irgSum = new int [ iFiles + 1 ] ;
+			irgSum [ 0 ] = 0 ;
+			irgSum [ 1 ] = irgFile [ 0 ] ;
 			
-			for ( int j = 0 ; j < iFiles ; ++j )
+			for ( int [] j : idprgMemorization )
 			{
-				vFile.add ( Integer.parseInt ( st.nextToken () ) ) ;
+				Arrays.fill ( j , -1 ) ;
 			}
-			
-			while ( vFile.size () != 1 )
+			for ( int j = 1 ; j < iFiles + 1 ; ++j )
 			{
-				iTemp = 20001 ;
-				
-				
-				for ( int j = 0 ; j < vFile.size () - 1 ; ++j )
-				{
-					if ( vFile.get ( j ) + vFile.get ( j + 1 ) < iTemp )
-					{
-						iTemp = vFile.get ( j ) + vFile.get ( j + 1 ) ;
-						iIndex = j ;
-					}
-				}
-				vFile.remove ( iIndex + 1 ) ;
-				vFile.remove ( iIndex ) ;
-				vFile.insertElementAt ( iTemp , iIndex ) ;
-				iTime += iTemp ;
+				irgSum [ j ] = irgSum [ j - 1 ] + irgFile [ j - 1 ] ;
 			}
+
 			
-			System.out.println ( iTime ) ;
+			System.out.println ( iGetMergeTime ( 0 , iFiles - 1 , irgFile ) ) ;
 		}
+	}
+	
+	private static int iGetMergeTime ( int iStart , int iEnd , int [] irgFile )
+	{
+		int iCompareTime = Integer.MAX_VALUE ;
+		
+		
+		
+		if ( -1 != idprgMemorization [ iStart ] [ iEnd ] )
+		{
+			return idprgMemorization [ iStart ] [ iEnd ] ;
+		}
+		else if ( iEnd == iStart )
+		{
+			idprgMemorization [ iStart ] [ iEnd ] = 0 ;
+		}
+		else
+		{
+			for ( int i = iStart ; i < iEnd ; ++i )
+			{
+				iCompareTime = Integer.min ( iCompareTime , iGetMergeTime ( iStart , i , irgFile ) + iGetMergeTime ( i + 1 , iEnd , irgFile ) ) ;			// Calculate, then a and b is in the stack.
+			}
+			
+			idprgMemorization [ iStart ] [ iEnd ] = iCompareTime + irgSum [ iEnd + 1 ] - irgSum [ iStart ] ;
+		}
+		
+		
+		return idprgMemorization [ iStart ] [ iEnd ] ;
 	}
 }

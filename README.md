@@ -500,3 +500,12 @@ Solved.ac - kkanggu
 #11066 Fail. (Merge Files)
 >	DP   
 >	I need to find best merge algorithm. Merging the least file size is not best algorithm.
+
+***
+### Day 42
+#11066 End. (Merge Files)
+>	DP   
+>	First, I used recursive function and stack to calculate the sum.   
+>	But it took too much time, I had to use Memoization.   
+>	I used 2-dimension array to store the time. [ i ] [ j ] means the time to merge ith file to jth file.   
+>	Because of algorithm, Stack didn't work well. So I used array to store sum. [ i ] means the sum of 0th file to i-1th file.
