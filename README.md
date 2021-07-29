@@ -509,3 +509,25 @@ Solved.ac - kkanggu
 >	But it took too much time, I had to use Memoization.   
 >	I used 2-dimension array to store the time. [ i ] [ j ] means the time to merge ith file to jth file.   
 >	Because of algorithm, Stack didn't work well. So I used array to store sum. [ i ] means the sum of 0th file to i-1th file.
+
+***
+### Day 43
+#11049 End. (Sequence of Matrix Multiplicaton)
+>	DP   
+>	Similar as #11066.   
+>	Final multiplication can be 1 * 2 * 3, or 100 * 200 * 300.   
+>	So I have to compare this. After compare all the cases, and then just return that value.
+
+#1520 End. (Downhill)
+>	DP   
+>	I think this is the best problem of DP problem.   
+>	I thought for long time to find the way. Finally I realized that this is very simple.   
+>	If I wanna get ( i , j ), then see the points up, down, left, right.   
+>	If it's not out of bounds and possible to cross over current point, just add.   
+>	This is recursive function, so it check points (  0 to i , 0 to j ).
+
+#10942 End. (Palindrome)
+>	DP   
+>	Easy dp problem.   
+>	It took too many memories, so I changed to use boolean instead of int.   
+>	But there was no big difference. Memory reduced about 8%, time reduced about 2%.
