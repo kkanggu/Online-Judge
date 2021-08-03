@@ -531,3 +531,23 @@ Solved.ac - kkanggu
 >	Easy dp problem.   
 >	It took too many memories, so I changed to use boolean instead of int.   
 >	But there was no big difference. Memory reduced about 8%, time reduced about 2%.
+
+***
+### Day 43
+#2629 End. (Balance Scale)
+>	DP   
+>	I had to use memoization, and it's little complicated.   
+>	So I used limited memoization. Memoi [ i ] [], i means I can use ith to nth weight.
+
+#2293 End. (Coin 1)
+>	DP   
+>	First, I used recursive function as I used before.   
+>	It took about 388ms, but others just took about 152ms. And I figure out I solved complicated.   
+>	It's a DP problem. To earn kth value, I have to earn k-1th value.   
+>	This problem is very easy. Get input value, and loop. That's it.
+
+#7579 Fail. (Application)
+>	DP   
+>	It's similar as Knapsack problem.   
+>	First, I used Memoization with rest memory. But memory can be 100m, it used too much memories.   
+>	So I changed to use with total additional memory. But it works wrong. I'll fix it.
