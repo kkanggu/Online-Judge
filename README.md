@@ -533,7 +533,7 @@ Solved.ac - kkanggu
 >	But there was no big difference. Memory reduced about 8%, time reduced about 2%.
 
 ***
-### Day 43
+### Day 44
 #2629 End. (Balance Scale)
 >	DP   
 >	I had to use memoization, and it's little complicated.   
@@ -551,3 +551,23 @@ Solved.ac - kkanggu
 >	It's similar as Knapsack problem.   
 >	First, I used Memoization with rest memory. But memory can be 100m, it used too much memories.   
 >	So I changed to use with total additional memory. But it works wrong. I'll fix it.
+
+***
+### Day 45
+#7579 Fail. (Application)
+>	DP   
+>	I failed this at 23%. What I'm writing is code simplicity and efficiency.   
+>	I used recursive function like knapsack. Whether use this or not, and check next app.   
+>	If total application is 20, the worst case, I call function about 1m(2^20)   
+>	Sure I can skip some procedure, it can be reduced to 100k(1/10)   
+>	But if I concentrate on DP, I can loop about 20k to solve this problem.   
+>	If max of restarting cost over 10k, I have to find better way.   
+>	But at this problem, DP is very easy and efficient way to solve.
+
+#7579 End. (Application)
+>	DP   
+>	DP is easy way to solve this problem.   
+>	Restarting memory is c, application memory is a.   
+>	Make array size of sum of c, and check every app with every c.   
+>	If loop starts from bottom, it add multiple times with one app. So I had to start from top.   
+>	I had to get minimum c with maximum a, so compare with Integer.max.
