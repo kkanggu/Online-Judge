@@ -571,3 +571,47 @@ Solved.ac - kkanggu
 >	Make array size of sum of c, and check every app with every c.   
 >	If loop starts from bottom, it add multiple times with one app. So I had to start from top.   
 >	I had to get minimum c with maximum a, so compare with Integer.max.
+
+***
+### Day 46
+#1260 End. (DFS and BFS)
+>	DFS & BFS   
+>	DFS & BFS tutorial problem.
+
+#2606 End. (Virus)
+>	DFS & BFS   
+>	Use DFS or BFS, and count the vertex. That's it.
+
+#2667 End. (Numbering Complex)
+>	DFS & BFS   
+>	Use DFS or BFS. and count the vertex.   
+>	Do DFS 2-dimension array not graph. That's the difference.
+
+***
+### Day 47
+#2178 End. (Maze Seek)
+>	DFS & BFS   
+>	First, I used DFS. But it sought too much levels, time exceeded. So I changed to use BFS.   
+>	Start from the first( [ 0 ] [ 0 ]). Seek with BFS, update to minimum lengh.
+
+#7576 End. (Tomato 2D)
+>	DFS & BFS   
+>	Similar to #2178, but starting point can be multiple.   
+>	Change queue to static, and add all starting points, and do BFS.
+
+#1697 End. (Hide and Seek)
+>	DFS & BFS   
+>	I used BFS to solve this problem. It took about 268ms.   
+>	But, it can be solved to use DP. With that way, time can be reduced to 136ms.
+
+#7569 End. (Tomato 3D)
+>	DFS & BFS   
+>	3D version of #7576. This is not hard, but too hassle.   
+>	I think that this is not good problem.
+
+#2206 End. (Move with breaking wall)
+>	DFS & BFS   
+>	This is very complex problem. I tried so hard to solve this.   
+>	I wrote about 138 lines, I think too spaghetti.   
+>	I can shorten the code, but I think it will take so much times.   
+>	Too complex, I wrote annotate at the code.
