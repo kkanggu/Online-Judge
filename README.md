@@ -615,3 +615,14 @@ Solved.ac - kkanggu
 >	I wrote about 138 lines, I think too spaghetti.   
 >	I can shorten the code, but I think it will take so much times.   
 >	Too complex, I wrote annotate at the code.
+
+***
+### Day 48
+#7562 End. (Night Move)
+>	DFS & BFS   
+>	Ordinary BFS problem.
+
+#1707 Fail. (Bipartite Graph)
+>	DFS & BFS   
+>	I tried to solve this with BFS, but time exceeded about 11%.   
+>	I'll use DFS to solve this.
