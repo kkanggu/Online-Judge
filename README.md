@@ -626,3 +626,20 @@ Solved.ac - kkanggu
 >	DFS & BFS   
 >	I tried to solve this with BFS, but time exceeded about 11%.   
 >	I'll use DFS to solve this.
+
+***
+### Day 49
+#1707 End. (Bipartite Graph)
+>	DFS & BFS   
+>	I used DFS to solve this. And it worked very well. Even the code was very short.
+
+#1753 End. (Shortest Path)
+>	Dijkstra   
+>	First, I enque ( Vertex , Length of Edge ). And it fails about 12%.   
+>	I passed every counterexample, and people said that have to enque cumulative length.   
+>	I couldn't find the reason why I fail, so I just changed to enque cumulative length. And it passed.
+
+#1504 Fail. (Specific Shortest Path)
+>	Dijkstra   
+>	I tried to solve this with Dijkstra, similar as #1753. But it failed about 12%.   
+>	I'll find the reason and fix this.
