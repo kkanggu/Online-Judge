@@ -643,3 +643,14 @@ Solved.ac - kkanggu
 >	Dijkstra   
 >	I tried to solve this with Dijkstra, similar as #1753. But it failed about 12%.   
 >	I'll find the reason and fix this.
+
+***
+### Day 50
+
+#1504 Fail. (Specific Shortest Path)
+>	Dijkstra   
+>	I still can't solve this problem. Every counterexamples are passed.   
+
+#9370 Fail. (Unidentified Destinaiton)
+>	Dijkstra   
+>	I failed this about 33%. And I passed every counterexamples. I really wanna know what is wrong...

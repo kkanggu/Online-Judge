@@ -9,7 +9,7 @@ public class OJ_1504_SpecificShortestPath
 {
 	static int g_iVertexCnt ;
 	static int g_iEdgeCnt ;
-	static int [] [] g_idrgPath ;
+	static long [] [] g_ldrgPath ;
 	static ArrayList < cInfo > [] g_alrgEdge ;
 	static int g_iFirstVertex ;
 	static int g_iSecondVertex ;
@@ -25,14 +25,14 @@ public class OJ_1504_SpecificShortestPath
 		st = new StringTokenizer ( br.readLine () ) ;
 		g_iVertexCnt = Integer.parseInt ( st.nextToken () ) ;
 		g_iEdgeCnt = Integer.parseInt ( st.nextToken () ) ;
-		g_idrgPath = new int [ g_iVertexCnt ] [ 3 ] ;
+		g_ldrgPath = new long [ g_iVertexCnt ] [ 3 ] ;
 		g_alrgEdge = new ArrayList [ g_iVertexCnt ] ;
 		
 		
 		
 		for ( int i = 0 ; i < g_iVertexCnt ; ++i )
 		{
-			Arrays.fill ( g_idrgPath [ i ] , Integer.MAX_VALUE ) ;
+			Arrays.fill ( g_ldrgPath [ i ] , Long.MAX_VALUE ) ;
 		}
 		for ( int i = 0 ; i < g_iVertexCnt ; ++i )
 		{
@@ -58,11 +58,11 @@ public class OJ_1504_SpecificShortestPath
 		g_iFirstVertex = Integer.parseInt ( st.nextToken () ) - 1 ;
 		g_iSecondVertex = Integer.parseInt ( st.nextToken () ) - 1 ;
 		
-		g_idrgPath [ 0 ] [ 0 ] = 0 ;
+		g_ldrgPath [ 0 ] [ 0 ] = 0 ;
 		
 		doDijkstra () ;
 		
-		System.out.println ( g_idrgPath [ g_iVertexCnt - 1 ] [ 2 ] != Integer.MAX_VALUE ? g_idrgPath [ g_iVertexCnt - 1 ] [ 2 ] : -1 ) ;
+		System.out.println ( g_ldrgPath [ g_iVertexCnt - 1 ] [ 2 ] != Long.MAX_VALUE ? g_ldrgPath [ g_iVertexCnt - 1 ] [ 2 ] : -1 ) ;
 	}
 	
 	public static void doDijkstra ()
@@ -78,7 +78,7 @@ public class OJ_1504_SpecificShortestPath
 		
 		if ( 0 == g_iFirstVertex )
 		{
-			g_idrgPath [ 0 ] [ 1 ] = 0 ;
+			g_ldrgPath [ 0 ] [ 1 ] = 0 ;
 		}
 		
 		
@@ -98,7 +98,7 @@ public class OJ_1504_SpecificShortestPath
 					++ iVertexPassed ;
 				}
 			}
-			while ( cVertex.m_iLength != g_idrgPath [ cVertex.m_iVertex ] [ iVertexPassed ] && ! pq.isEmpty () ) ;
+			while ( cVertex.m_lLength != g_ldrgPath [ cVertex.m_iVertex ] [ iVertexPassed ] && ! pq.isEmpty () ) ;
 			
 			if ( null != cVertex )
 			{
@@ -106,7 +106,7 @@ public class OJ_1504_SpecificShortestPath
 				{
 					cGetEdge = g_alrgEdge [ cVertex.m_iVertex ].get ( i ) ;
 					cTemp = new cInfo ( cGetEdge ) ;
-					cTemp.m_iLength += g_idrgPath [ cVertex.m_iVertex ] [ iVertexPassed ] ;
+					cTemp.m_lLength += g_ldrgPath [ cVertex.m_iVertex ] [ iVertexPassed ] ;
 					cTemp.m_iPassedSpecific = cVertex.m_iPassedSpecific ;
 					
 					if ( ( cTemp.m_iVertex == g_iFirstVertex ) &&
@@ -127,9 +127,9 @@ public class OJ_1504_SpecificShortestPath
 						++ iTempPassed ;
 					}
 					
-					if ( cTemp.m_iLength < g_idrgPath [ cTemp.m_iVertex ] [ iTempPassed ] )
+					if ( cTemp.m_lLength < g_ldrgPath [ cTemp.m_iVertex ] [ iTempPassed ] )
 					{
-						g_idrgPath [ cTemp.m_iVertex ] [ iTempPassed ] = cTemp.m_iLength ;
+						g_ldrgPath [ cTemp.m_iVertex ] [ iTempPassed ] = cTemp.m_lLength ;
 						pq.add ( cTemp ) ;
 					}
 				}
@@ -140,30 +140,30 @@ public class OJ_1504_SpecificShortestPath
 	static class cInfo implements Comparable < cInfo >
 	{
 		int m_iVertex ;
-		int m_iLength ;
+		long m_lLength ;
 		int m_iPassedSpecific ;									// -1 not, 0 First, 1 Second, 2 Both
 		
-		public cInfo ( int iVertex , int iLength , int iPassedSpecific )
+		public cInfo ( int iVertex , long lLength , int iPassedSpecific )
 		{
 			m_iVertex = iVertex ;
-			m_iLength = iLength ;
+			m_lLength = lLength ;
 			m_iPassedSpecific = iPassedSpecific ;
 		}
 		
 		public cInfo ( cInfo cTemp )
 		{
 			m_iVertex = cTemp.m_iVertex ;
-			m_iLength = cTemp.m_iLength ;
+			m_lLength = cTemp.m_lLength ;
 			m_iPassedSpecific = cTemp.m_iPassedSpecific ;
 		}
 		
 		@Override
 		public int compareTo ( cInfo cCompare )
 		{
-			return this.m_iLength - cCompare.m_iLength ;
-//			if ( this.m_iLength < cCompare.m_iLength )
+			return ( int ) ( this.m_lLength - cCompare.m_lLength ) ;
+//			if ( this.m_lLength < cCompare.m_lLength )
 //			{
-//				return this.m_iLength - cCompare.m_iLength ;
+//				return this.m_lLength - cCompare.m_lLength ;
 //			}
 //
 //			return this.m_iVertex - cCompare.m_iVertex ;
