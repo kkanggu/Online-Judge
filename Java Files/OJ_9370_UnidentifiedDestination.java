@@ -13,7 +13,7 @@ public class OJ_9370_UnidentifiedDestination
 	static int g_iVertexCnt ;
 	static int g_iEdgeCnt ;
 	static int g_iDestCnt ;
-	static int [] [] g_idrgPath ;										// 0 Not passed, 1 passed
+	static int [] g_irgPath ;							// If odd, passed. If even, not passed.
 	static int [] g_irgDest ;
 	static ArrayList < cInfo >[] g_alrgEdge ;
 	static int g_iFirstVertex ;
@@ -41,16 +41,13 @@ public class OJ_9370_UnidentifiedDestination
 			g_iFirstVertex = Integer.parseInt ( st.nextToken () ) - 1 ;
 			g_iSecondVertex = Integer.parseInt ( st.nextToken () ) - 1 ;
 			
-			g_idrgPath = new int [ g_iVertexCnt ] [ 2 ] ;
+			g_irgPath = new int [ g_iVertexCnt ] ;
 			g_alrgEdge = new ArrayList [ g_iVertexCnt ] ;
 			g_irgDest = new int [ g_iDestCnt ] ;
 			
+			Arrays.fill ( g_irgPath , Integer.MAX_VALUE / 2 * 2 ) ;
 			
 			
-			for ( int j = 0 ; j < g_iVertexCnt ; ++j )
-			{
-				Arrays.fill ( g_idrgPath [ j ] , Integer.MAX_VALUE ) ;
-			}
 			for ( int j = 0 ; j < g_iVertexCnt ; ++j )
 			{
 				g_alrgEdge [ j ] = new ArrayList <> ();
@@ -65,10 +62,15 @@ public class OJ_9370_UnidentifiedDestination
 				st = new StringTokenizer ( br.readLine () ) ;
 				iStart = Integer.parseInt ( st.nextToken () ) - 1 ;
 				iEnd = Integer.parseInt ( st.nextToken () ) - 1 ;
-				iLength = Integer.parseInt ( st.nextToken () ) ;
+				iLength = Integer.parseInt ( st.nextToken () ) * 2 ;
 				
-				g_alrgEdge [ iStart ].add ( new cInfo ( iEnd , iLength , false ) ) ;
-				g_alrgEdge [ iEnd ].add ( new cInfo ( iStart , iLength , false ) ) ;
+				if ( ( g_iFirstVertex == iStart && g_iSecondVertex == iEnd ) || ( g_iFirstVertex == iEnd && g_iSecondVertex == iStart ) )
+				{
+					-- iLength ;
+				}
+				
+				g_alrgEdge [ iStart ].add ( new cInfo ( iEnd , iLength ) ) ;
+				g_alrgEdge [ iEnd ].add ( new cInfo ( iStart , iLength ) ) ;
 			}
 			for ( int j = 0 ; j < g_iDestCnt ; ++j )
 			{
@@ -77,14 +79,14 @@ public class OJ_9370_UnidentifiedDestination
 			
 			Arrays.sort ( g_irgDest ) ;
 			
-			g_idrgPath [ iStartVertex ] [ 0 ] = 0 ;
+			g_irgPath [ iStartVertex ] = 0 ;
 			
 			doDijkstra ( iStartVertex ) ;
 			
 			
 			for ( int j = 0 ; j < g_iDestCnt ; ++j )
 			{
-				if ( g_idrgPath [ g_irgDest [ j ] ] [ 1 ] <= g_idrgPath [ g_irgDest [ j ] ] [ 0 ] )
+				if ( g_irgPath [ g_irgDest [ j ] ] % 2 == 1 )
 				{
 					sb.append ( g_irgDest [ j ] + 1 ) ;
 					sb.append ( ' ' ) ;
@@ -105,11 +107,10 @@ public class OJ_9370_UnidentifiedDestination
 		cInfo cVertex ;
 		cInfo cGetEdge ;
 		cInfo cTemp ;
-		int iPassCheck = 0 ;
 		
 		
 		
-		pq.add ( new cInfo ( iStartVertex , 0 , false ) ) ;
+		pq.add ( new cInfo ( iStartVertex , 0 ) ) ;
 		
 		
 		while ( ! pq.isEmpty () )
@@ -117,9 +118,8 @@ public class OJ_9370_UnidentifiedDestination
 			do
 			{
 				cVertex = pq.poll () ;
-				iPassCheck = cVertex.m_bPassed == true ? 1 : 0 ;
 			}
-			while ( cVertex.m_iLength != g_idrgPath [ cVertex.m_iVertex ] [ iPassCheck ] && ! pq.isEmpty () ) ;
+			while ( cVertex.m_iLength != g_irgPath [ cVertex.m_iVertex ] && ! pq.isEmpty () ) ;
 			
 			if ( null != cVertex )
 			{
@@ -128,19 +128,11 @@ public class OJ_9370_UnidentifiedDestination
 					cGetEdge = g_alrgEdge [ cVertex.m_iVertex ].get ( i ) ;
 					cTemp = new cInfo ( cGetEdge ) ;
 					cTemp.m_iLength += cVertex.m_iLength ;
-					cTemp.m_bPassed = cVertex.m_bPassed ;
 					
 					
-					if ( ( ( cVertex.m_iVertex == g_iFirstVertex ) && ( cTemp.m_iVertex == g_iSecondVertex ) )
-							|| ( ( cVertex.m_iVertex == g_iSecondVertex ) && ( cTemp.m_iVertex == g_iFirstVertex ) ) )
+					if ( cTemp.m_iLength < g_irgPath [ cTemp.m_iVertex ] )
 					{
-						cTemp.m_bPassed = true ;
-						iPassCheck = 1 ;
-					}
-					
-					if ( cTemp.m_iLength < g_idrgPath [ cTemp.m_iVertex ] [ iPassCheck ] )
-					{
-						g_idrgPath [ cTemp.m_iVertex ] [ iPassCheck ] = cTemp.m_iLength ;
+						g_irgPath [ cTemp.m_iVertex ] = cTemp.m_iLength ;
 						pq.add ( cTemp ) ;
 					}
 				}
@@ -152,26 +144,24 @@ public class OJ_9370_UnidentifiedDestination
 	{
 		int m_iVertex ;
 		int m_iLength ;
-		boolean m_bPassed ;
 		
-		public cInfo ( int iVertex , int iLength , boolean bPassed )
+		public cInfo ( int iVertex , int iLength )
 		{
 			m_iVertex = iVertex ;
 			m_iLength = iLength ;
-			m_bPassed = bPassed ;
 		}
 		
 		public cInfo ( cInfo cTemp )
 		{
 			m_iVertex = cTemp.m_iVertex ;
 			m_iLength = cTemp.m_iLength ;
-			m_bPassed = cTemp.m_bPassed ;
 		}
 		
 		@Override
 		public int compareTo ( cInfo cCompare )
 		{
 			return this.m_iLength - cCompare.m_iLength ;
+			
 //			if ( this.m_lLength < cCompare.m_lLength )
 //			{
 //				return this.m_lLength - cCompare.m_lLength ;

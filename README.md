@@ -646,7 +646,6 @@ Solved.ac - kkanggu
 
 ***
 ### Day 50
-
 #1504 Fail. (Specific Shortest Path)
 >	Dijkstra   
 >	I still can't solve this problem. Every counterexamples are passed.   
@@ -654,3 +653,14 @@ Solved.ac - kkanggu
 #9370 Fail. (Unidentified Destinaiton)
 >	Dijkstra   
 >	I failed this about 33%. And I passed every counterexamples. I really wanna know what is wrong...
+
+***
+### Day 51
+#9370 End. (Unidentified Destinaiton)
+>	Dijkstra   
+>	I separated to even and odd. I set the weight of road that must pass odd number, and set others to even.   
+>	Check the weight of shortest path. If it's odd, then this route contains the road that must pass.
+
+#11657 End. (Time Machine)
+>	Bellman Ford   
+>	I failed this with IndexOutOfBounds error. I'll find out why this happend.
