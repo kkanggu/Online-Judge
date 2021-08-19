@@ -661,6 +661,28 @@ Solved.ac - kkanggu
 >	I separated to even and odd. I set the weight of road that must pass odd number, and set others to even.   
 >	Check the weight of shortest path. If it's odd, then this route contains the road that must pass.
 
-#11657 End. (Time Machine)
+#11657 Fail. (Time Machine)
 >	Bellman Ford   
 >	I failed this with IndexOutOfBounds error. I'll find out why this happend.
+
+***
+### Day 52
+#11657 End. (Time Machine)
+>	Bellman Ford   
+>	Former code couldn't find the answer to the input below.
+>>	4 4   
+>>	1 2 1   
+>>	1 3 2   
+>>	3 2 -2   
+>>	2 4 1   
+>	So I changed to loop for every edge for n-1 times.
+
+#11404 End. (Floyd)
+>	Floyd & Warshall   
+>	Just do Floyd & Warshall algorithm.
+
+#10217 Fail. (KCM Travel)
+>	Dynamic Programming   
+>	I used condition with minimal cost or minimal time.   
+>	But the answer may not be both.   
+>	I'll fix this.

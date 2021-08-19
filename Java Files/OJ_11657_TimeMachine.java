@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 
@@ -12,8 +11,8 @@ public class OJ_11657_TimeMachine
 {
 	static int g_iVertexCnt ;
 	static int g_iEdgeCnt ;
-	static int [] g_irgPath ;
-	static ArrayList < cInfo > [] g_alrgEdge ;
+	static long [] g_lrgPath ;
+	static ArrayList < cInfo > g_alEdge ;
 	static boolean g_bInf = false ;
 	static boolean [] g_bVisit ;
 	
@@ -24,22 +23,18 @@ public class OJ_11657_TimeMachine
 		StringTokenizer st ;
 		StringBuilder sb = new StringBuilder () ;
 		
-		
-		
 		st = new StringTokenizer ( br.readLine () ) ;
 		g_iVertexCnt = Integer.parseInt ( st.nextToken () ) ;
 		g_iEdgeCnt = Integer.parseInt ( st.nextToken () ) ;
-		g_irgPath = new int [ g_iVertexCnt ] ;
-		g_alrgEdge = new ArrayList [ g_iVertexCnt ] ;
+		g_lrgPath = new long [ g_iVertexCnt ] ;
+		g_alEdge = new ArrayList <> () ;
 		g_bVisit = new boolean [ g_iVertexCnt ] ;
 		
-		Arrays.fill ( g_irgPath , Integer.MAX_VALUE ) ;
 		
 		
-		for ( int j = 0 ; j < g_iVertexCnt ; ++j )
-		{
-			g_alrgEdge [ j ] = new ArrayList <> ();
-		}
+		Arrays.fill ( g_lrgPath , Long.MAX_VALUE ) ;
+		
+		
 		for ( int i = 0 ; i < g_iEdgeCnt ; ++i )
 		{
 			st = new StringTokenizer ( br.readLine () ) ;
@@ -47,7 +42,7 @@ public class OJ_11657_TimeMachine
 			int iEnd = Integer.parseInt ( st.nextToken () ) - 1 ;
 			int iLength = Integer.parseInt ( st.nextToken () ) ;
 			
-			g_alrgEdge [ iStart ].add ( new cInfo ( iEnd , iLength ) ) ;
+			g_alEdge.add ( new cInfo ( iStart , iEnd , iLength ) ) ;
 		}
 		
 		doBellmanFord () ;
@@ -61,7 +56,7 @@ public class OJ_11657_TimeMachine
 		{
 			for ( int i = 1 ; i < g_iVertexCnt ; ++i )
 			{
-				sb.append ( g_irgPath [ i ] != Integer.MAX_VALUE ? g_irgPath [ i ] : -1 ) ;
+				sb.append ( g_lrgPath [ i ] != Long.MAX_VALUE ? g_lrgPath [ i ] : -1 ) ;
 				sb.append ( '\n' ) ;
 			}
 		}
@@ -72,84 +67,65 @@ public class OJ_11657_TimeMachine
 	
 	public static void doBellmanFord ()
 	{
-		PriorityQueue < cInfo > pq = new PriorityQueue <> () ;
 		cInfo cEdge ;
-		cInfo cCurrent ;
-		int iCurrentLength = 0 ;
+		int iStart = 0 ;
+		int iEnd = 0 ;
+		long lLength = 0 ;
 		
 		
 		
-		pq.add ( new cInfo (  0 , 0 ) ) ;
-		g_irgPath [ 0 ] = 0 ;
+		g_lrgPath [ 0 ] = 0 ;
 		
 		
-		for ( int i = 0 ; i < g_iVertexCnt ; ++i )
+		for ( int i = 0 ; i < g_iVertexCnt - 1 ; ++i )
 		{
-			cCurrent = pq.poll () ;
-			
-			while ( null != cCurrent && g_bVisit [ cCurrent.m_iVertex ] )
+			for ( int j = 0 ; j < g_alEdge.size () ; ++j )
 			{
-				cCurrent = pq.poll () ;
-			}
-			
-			if ( pq.isEmpty () && null == cCurrent )
-			{
-				break ;
-			}
-			
-			
-			iCurrentLength = cCurrent.m_iLength ;
-			
-			g_bVisit [ cCurrent.m_iVertex ] = true ;
-			
-			
-			for ( int j = 0 ; j < g_alrgEdge [ i ].size () ; ++j )
-			{
-				cEdge = g_alrgEdge [ cCurrent.m_iVertex ].get ( j ) ;
+				cEdge = g_alEdge.get ( j ) ;
+				iStart = cEdge.m_iStartVertex ;
+				iEnd = cEdge.m_iEndVertex ;
+				lLength = cEdge.m_lLength ;
 				
 				
-				if ( iCurrentLength + cEdge.m_iLength < g_irgPath [ cEdge.m_iVertex ] )
+				if ( ( g_lrgPath [ iStart ] != Long.MAX_VALUE ) && ( g_lrgPath [ iStart ] + lLength < g_lrgPath [ iEnd ] ) )
 				{
-					if ( g_bVisit [ cEdge.m_iVertex ] )
-					{
-						g_bInf = true ;
-						
-						break ;
-					}
-					
-					g_irgPath [ cEdge.m_iVertex ] = iCurrentLength + cEdge.m_iLength ;
-					pq.add ( new cInfo ( cEdge.m_iVertex , g_irgPath [ cEdge.m_iVertex ] ) ) ;
+					g_lrgPath [ iEnd ] = g_lrgPath [ iStart ] + lLength ;
 				}
 			}
+		}
+		for ( int i = 0 ; i < g_alEdge.size () ; ++i )																				// Check the cycle
+		{
+			cEdge = g_alEdge.get ( i ) ;
+			iStart = cEdge.m_iStartVertex ;
+			iEnd = cEdge.m_iEndVertex ;
+			lLength = cEdge.m_lLength ;
 			
-			if ( g_bInf )
+			
+			if ( ( g_lrgPath [ iStart ] != Long.MAX_VALUE ) && ( g_lrgPath [ iStart ] + lLength < g_lrgPath [ iEnd ] ) )			// Cycle exist
 			{
-				break ;
+				System.out.println ( -1 ) ;
+				System.exit ( 0 ) ;
 			}
 		}
 	}
 	
 	static class cInfo implements Comparable < cInfo >
 	{
-		int m_iVertex ;
-		int m_iLength ;
+		int m_iStartVertex ;
+		int m_iEndVertex ;
+		Long m_lLength ;
 		
-		public cInfo ( int iVertex , int iLength )
+		public cInfo ( int iStartVertex , int iEndVertex , long lLength )
 		{
-			m_iVertex = iVertex ;
-			m_iLength = iLength ;
-		}
-		
-		public cInfo ( cInfo cTemp )
-		{
-			m_iVertex = cTemp.m_iVertex ;
-			m_iLength = cTemp.m_iLength ;
+			m_iStartVertex = iStartVertex ;
+			m_iEndVertex = iEndVertex ;
+			m_lLength = lLength ;
 		}
 		
 		@Override
 		public int compareTo ( cInfo cCompare )
 		{
-			return this.m_iLength - cCompare.m_iLength ;
+			return ( int ) ( this.m_lLength - cCompare.m_lLength ) ;
 
 //			if ( this.m_lLength < cCompare.m_lLength )
 //			{
