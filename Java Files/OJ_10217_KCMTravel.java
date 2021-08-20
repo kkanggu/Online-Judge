@@ -1,18 +1,17 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 
 
 public class OJ_10217_KCMTravel
 {
 	static int g_iAirportCnt ;
-	static int [] [] g_idrgCostTime ;									// [ 0 ] [ 1 ] priority cost, [ 2 ] [ 3 ] priority Time. [ 0 , 2 ] means cost, [ 1 , 3 ] means time
-	static ArrayList < cInfo > [] g_alrgTicket ;						// [ n ] means 1 ~ n-1 to n tickets.
-	static int g_iLimit ;
+	static int [] [] g_idrgCostTime ;									// [ End ] [ Cost ] = Time
+	static ArrayList < cInfo >[] g_alrgTicket ;						// [ n ] n -> n + 1 ~ ... tickets.
+	static int g_iLimitCost ;
+	static boolean [] g_brgVisit ;
 	
 	public static void main ( String[] args ) throws IOException
 	{
@@ -28,11 +27,12 @@ public class OJ_10217_KCMTravel
 		{
 			st = new StringTokenizer ( br.readLine () ) ;
 			g_iAirportCnt = Integer.parseInt ( st.nextToken () ) ;
-			g_iLimit = Integer.parseInt ( st.nextToken () ) ;
+			g_iLimitCost = Integer.parseInt ( st.nextToken () ) ;
 			int iTicket = Integer.parseInt ( st.nextToken () ) ;
 			
 			g_alrgTicket = new ArrayList [ g_iAirportCnt ] ;
-			g_idrgCostTime = new int [ g_iAirportCnt ] [ 4 ] ;
+			g_idrgCostTime = new int [ g_iAirportCnt ] [ g_iLimitCost + 1 ] ;
+			g_brgVisit = new boolean [ g_iAirportCnt ] ;
 			
 			for ( int j = 0 ; j < g_iAirportCnt ; ++j )
 			{
@@ -47,15 +47,20 @@ public class OJ_10217_KCMTravel
 				int iCost = Integer.parseInt ( st.nextToken () ) ;
 				int iTime = Integer.parseInt ( st.nextToken () ) ;
 				
-				g_alrgTicket [ iEnd ].add ( new cInfo ( iStart , iCost , iTime ) ) ;
+				g_alrgTicket [ iStart ].add ( new cInfo ( iEnd , iCost , iTime ) ) ;
 			}
 			
 			Arrays.fill ( g_idrgCostTime [ 0 ] , 0 ) ;
 			
 			getTravelTime () ;
 			
-			iFinalCost = Integer.min ( g_idrgCostTime [ g_iAirportCnt - 1 ] [ 1 ] , g_idrgCostTime [ g_iAirportCnt - 1 ] [ 3 ] ) ;
 			
+			iFinalCost = g_idrgCostTime [ g_iAirportCnt - 1 ] [ 0 ] ;
+			
+			for ( int j = 1 ; j < g_iLimitCost + 1 ; j++ )
+			{
+				iFinalCost = Integer.min ( iFinalCost , g_idrgCostTime [ g_iAirportCnt - 1 ] [ j ] ) ;
+			}
 			if ( iFinalCost == Integer.MAX_VALUE )
 			{
 				sb.append ( "Poor KCM" ) ;
@@ -73,50 +78,81 @@ public class OJ_10217_KCMTravel
 	
 	public static void getTravelTime ()
 	{
+		Queue < cInfo > pQueue = new LinkedList <> () ;
+		cInfo cAirport ;
 		cInfo cTicket ;
 		int iStart ;
+		int iEnd ;
 		int iCost ;
 		int iTime ;
+		int iChangeStart ;
+		int iChangeEnd ;
+		int iNextStart = g_iLimitCost ;
+		int iNextEnd = 0 ;
+		boolean bChange = false ;
 		
 		
 		
-		for ( int i = 1 ; i < g_iAirportCnt ; ++i )
+		pQueue.add ( new cInfo ( 0 , 0 , g_iLimitCost ) ) ;
+		
+		while ( ! pQueue.isEmpty () )
 		{
-			for ( int j = 0 ; j < g_alrgTicket [ i ].size () ; ++j )
+			cAirport = pQueue.poll () ;
+			
+			iStart = cAirport.m_iEndAirport ;
+			iChangeStart = cAirport.m_iCost ;
+			iChangeEnd = cAirport.m_iTime ;
+			
+			g_brgVisit [ iStart ] = false ;
+			
+			for ( int j = 0 ; j < g_alrgTicket [ iStart ].size () ; ++j )
 			{
-				cTicket = g_alrgTicket [ i ].get ( j ) ;
-				iStart = cTicket.m_iStartAirport ;
+				cTicket = g_alrgTicket [ iStart ].get ( j ) ;
+				iEnd = cTicket.m_iEndAirport ;
 				iCost = cTicket.m_iCost ;
 				iTime = cTicket.m_iTime ;
+				iNextStart = g_iLimitCost ;
+				iNextEnd = 0 ;
+				bChange = false ;
 				
-				if ( ( g_idrgCostTime [ iStart ] [ 0 ] + iCost < g_idrgCostTime [ i ] [ 0 ] )				// Cost compare
-						&& ( g_idrgCostTime [ iStart ] [ 0 ] + iCost <= g_iLimit )							// Check cost exceed
-						&& ( g_idrgCostTime [ iStart ] [ 0 ] != Integer.MAX_VALUE ) )
+				iChangeEnd = Integer.min ( cAirport.m_iTime , g_iLimitCost - iCost + 1 ) ;
+				
+				for ( int k = iChangeStart ; k < iChangeEnd ; k++ )
 				{
-					g_idrgCostTime [ i ] [ 0 ] = g_idrgCostTime [ iStart ] [ 0 ] + iCost ;
-					g_idrgCostTime [ i ] [ 1 ] = g_idrgCostTime [ iStart ] [ 1 ] + iTime ;
+					if ( ( Integer.MAX_VALUE != g_idrgCostTime [ iStart ] [ k ] )
+							&& ( g_idrgCostTime [ iStart ] [ k ] + iTime < g_idrgCostTime [ iEnd ] [ iCost + k ] ) )
+					{
+						g_idrgCostTime [ iEnd ] [ iCost + k ] = g_idrgCostTime [ iStart ] [ k ] + iTime ;
+						
+						if ( ! g_brgVisit [ iEnd ] )
+						{
+							bChange = true ;
+							iNextStart = Integer.min ( iNextStart , k ) ;
+							iNextEnd = Integer.max ( iNextEnd , k ) ;
+						}
+					}
 				}
-				if ( ( g_idrgCostTime [ iStart ] [ 3 ] + iTime < g_idrgCostTime [ i ] [ 3 ] )				// Time compare
-						&& ( g_idrgCostTime [ iStart ] [ 2 ] + iCost <= g_iLimit )							// Check cost exceed
-						&& ( g_idrgCostTime [ iStart ] [ 0 ] != Integer.MAX_VALUE ) )
+				
+				if ( ! g_brgVisit [ iEnd ] && bChange )
 				{
-					g_idrgCostTime [ i ] [ 2 ] = g_idrgCostTime [ iStart ] [ 2 ] + iCost ;
-					g_idrgCostTime [ i ] [ 3 ] = g_idrgCostTime [ iStart ] [ 3 ] + iTime ;
+					pQueue.add ( new cInfo ( iEnd , iNextStart , iNextEnd ) ) ;
 				}
+				
+				g_brgVisit [ iEnd ] = true ;
 			}
 		}
 	}
 	
 	static class cInfo implements Comparable < cInfo >
 	{
-		int m_iStartAirport ;
+		int m_iEndAirport ;
 		int m_iCost ;
 		int m_iTime ;
 		
 		
-		public cInfo ( int iStartAirport , int iCost , int iTime )
+		public cInfo ( int iEndAirport , int iCost , int iTime )
 		{
-			m_iStartAirport = iStartAirport ;
+			m_iEndAirport = iEndAirport ;
 			m_iCost = iCost ;
 			m_iTime = iTime ;
 		}
@@ -124,25 +160,12 @@ public class OJ_10217_KCMTravel
 		@Override
 		public int compareTo ( cInfo cCompare )
 		{
-			if ( this.m_iCost < cCompare.m_iCost )
+			if ( this.m_iTime < cCompare.m_iTime )
 			{
-				return this.m_iCost - cCompare.m_iCost ;
+				return this.m_iTime - cCompare.m_iTime ;
 			}
 			
-			return m_iTime - cCompare.m_iTime ;
+			return m_iCost - cCompare.m_iCost ;
 		}
 	}
 }
-
-/*
-	1
-	6 149 8
-	1 2 60 20
-	2 3 30 70
-	1 3 100 80
-	1 3 20 180
-	3 4 20 100
-	3 5 150 20
-	5 6 50 40
-	4 6 30 50
- */

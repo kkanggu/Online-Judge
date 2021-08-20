@@ -670,12 +670,12 @@ Solved.ac - kkanggu
 #11657 End. (Time Machine)
 >	Bellman Ford   
 >	Former code couldn't find the answer to the input below.
+>	So I changed to loop for every edge for n-1 times.
 >>	4 4   
 >>	1 2 1   
 >>	1 3 2   
 >>	3 2 -2   
 >>	2 4 1   
->	So I changed to loop for every edge for n-1 times.
 
 #11404 End. (Floyd)
 >	Floyd & Warshall   
@@ -686,3 +686,12 @@ Solved.ac - kkanggu
 >	I used condition with minimal cost or minimal time.   
 >	But the answer may not be both.   
 >	I'll fix this.
+
+***
+### Day 53
+#10217 Fail. (KCM Travel)
+>	Dynamic Programming & Dijkstra
+>	Former code couldn't find the answer. Setting the condition is wrong. So I used Dijkstra too.   
+>	If the value is changed from N to K, then put the node, N, K.   
+>	Then when the node is pop, recalculate the node N to K, with only changed values.   
+>	Probably something is wrong. My code still couldn't find the answer with big inputs.
