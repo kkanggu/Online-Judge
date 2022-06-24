@@ -9,17 +9,7 @@ There are too many problems, so I stopped to add comment.
 I tried to write it as post, but setting github page is too hard.
 
 I wrote problems as post, without uploading. After github page is done, I'll upload every posts that I wrote.
-
-
-
-
-
-
-
-
-
-
-
+<br/><br/><br/><br/><br/><br/><br/><br/>
 ---------------------------
 
 ### Day 1
