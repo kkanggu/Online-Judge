@@ -1,50 +1,89 @@
-#include <vector>
 #include <string>
-#include <unordered_map>
-#include <utility>
-#include <sstream>
+#include <vector>
 
-using std :: vector ;
 using std :: string ;
-using std :: unordered_map ;
-using std :: pair ;
-using std :: make_pair ;
+using std :: vector ;
 
-vector < pair < char , int > > vSmallLetter ;
-
-string strEraseWrongBlank ( string strTarget )
+string strGetRule1 ( string & strAnswer , int iStartIndex , int iCount )
 {
 	string strReturn = "" ;
-	std :: stringstream ss ( strTarget ) ;
-	string strTemp ;
-
-
-
-	while ( ss >> strTemp )
+	
+	for ( int i = 0 ; i < iCount + 1 ; ++i )
 	{
-		strReturn += strTemp ;
-		strReturn += " " ;
-	}
+		strReturn += strAnswer [ iStartIndex + ( i << 1 ) - 1 ] ;
 
-	if ( ' ' == strReturn [ strReturn.size () - 1 ] )
-		return strReturn.substr ( 0 , strReturn.size () - 1 ) ;
+		if ( ' ' == strReturn [ i ] )											// Empty space must not be here
+			return "invalid" ;
+		if ( ( 'a' <= strReturn [ i ] ) && ( strReturn [ i ] <= 'z' ) )			// Small letter must not be here
+			return "invalid" ;
+	}
+	
 	return strReturn ;
 }
-
-string strAdoptRule2 ( string sentence , pair < char , int > pLetterInfo )
+			
+bool bAdoptRule1 ( string & strAnswer , char cTarget , int iCount )
 {
-	int iStringSize = sentence.size () ;
-	const char * cpString = sentence.data () ;
+	int iStringSize = strAnswer.size () ;
 	int iStartIndex = -1 ;
-	int iEndIndex = 0 ;
+	int iFormerIndex ;
+	int iCheckCount = 0 ;
+	
+	
+	
+	for ( int i = 0 ; ( i < iStringSize ) && ( iCheckCount < iCount ); ++i )
+	{
+		if ( cTarget == strAnswer [ i ] )
+		{
+			if ( -1 == iStartIndex )
+			{
+				iStartIndex = i ;
+				iFormerIndex = i ;
+			}
+			else
+			{
+				if ( 2 != i - iFormerIndex )		// Gap must be 2
+					return false ;
+				else
+					iFormerIndex = i ;
+			}
+			
+			++ iCheckCount ;
+		}
+		else if ( ( -1 != iStartIndex ) && ( ( 'A' > strAnswer [ i ] ) || ( strAnswer [ i ] > 'Z' ) ) )
+			return false ;
+	}
+	
+	if ( ( 0 == iStartIndex ) || ( iFormerIndex + 1 == iStringSize ) )		// Must letter at front and back
+		return false ;
+	if ( ( ( 'A' > strAnswer [ iStartIndex - 1 ] ) || ( strAnswer [ iStartIndex - 1 ] > 'Z' ) )
+	  || ( ( 'A' > strAnswer [ iFormerIndex + 1 ] ) || ( strAnswer [ iFormerIndex + 1 ] > 'Z' ) ) )
+	  	return false ;
+
+	string strRule1 = strGetRule1 ( strAnswer , iStartIndex , iCount ) ;
+
+	if ( 0 == strRule1.compare ( "invalid" ) )		// Found empty space or small letter, can't adopt rule1
+		return false ;
+
+	
+	strAnswer = strAnswer.substr ( 0 , iStartIndex - 1 ) + "." + strGetRule1 ( strAnswer , iStartIndex , iCount ) + "." + strAnswer.substr ( iFormerIndex + 2 , iStringSize - iFormerIndex - 2 ) ;
+
+	return true ;
+}
+
+bool bAdoptRule2 ( string & strAnswer , char cTarget , vector < int > & vAlphabetCount )
+{
+	vAlphabetCount [ cTarget - 'a' ] = 0 ;
+	int iStartIndex = -1 ;
+	int iEndIndex = -1 ;
+	int iLeftDotIndex = -1 ;
+	int iRightDotIndex = -1 ;
+	int iStringSize = strAnswer.size () ;
 
 
 
 	for ( int i = 0 ; i < iStringSize ; ++i )
 	{
-		char cTemp = cpString [ i ] ;
-
-		if ( cTemp == pLetterInfo.first )
+		if ( cTarget == strAnswer [ i ] )
 		{
 			if ( -1 == iStartIndex )
 				iStartIndex = i ;
@@ -55,144 +94,105 @@ string strAdoptRule2 ( string sentence , pair < char , int > pLetterInfo )
 				break ;
 			}
 		}
+		else if ( ( -1 != iStartIndex ) && ( '.' == strAnswer [ i ] ) )
+		{
+			if ( ( -1 == iLeftDotIndex ) && ( iStartIndex + 1 == i ) )
+				iLeftDotIndex = i ;
+			else if ( ( -1 != iLeftDotIndex ) && ( -1 == iRightDotIndex ) )
+				iRightDotIndex = i ;
+			else																// Other condition not exist
+				return false ;
+		}
+		else if ( ( -1 != iStartIndex ) && ( ' ' == strAnswer [ i ] ) )											// Empty space must not be here
+			return false ;
+		else if ( ( -1 != iStartIndex ) && ( 'a' <= strAnswer [ i ] ) && ( strAnswer [ i ] <= 'z' ) )			// This must be rule1, or wrong string
+		{
+			vAlphabetCount [ strAnswer [ i ] - 'a' ] = 0 ;
+
+			if ( ! bAdoptRule1 ( strAnswer , strAnswer [ i ] , 2 ) )			// If false, can't adopt rule1
+				return false ;
+			
+			i -= 2 ;
+		}
 	}
 
-	if ( ( ( ' ' == cpString [ iStartIndex + 1 ] ) || ( ' ' == cpString [ iEndIndex - 1 ] ) )
-		|| ( iStartIndex + 1 == iEndIndex ) )
-		return "" ;
-	else
-	{
-		sentence [ iStartIndex ] = ' ' ;
-		sentence [ iEndIndex ] = ' ' ;
-	}
+	if ( iStartIndex + 1 == iEndIndex )
+		return false ;
+	if ( ( -1 != iLeftDotIndex ) && ( ( -1 == iRightDotIndex )
+									|| ( iRightDotIndex + 1 != iEndIndex ) ) )
+		return false ;
 
-	return sentence ;
+	strAnswer = strAnswer.substr ( 0 , iStartIndex ) + " " + strAnswer.substr ( iStartIndex + 1 , iEndIndex - iStartIndex - 1 ) + " " + strAnswer.substr ( iEndIndex + 1 , iStringSize - iEndIndex - 1 ) ;
+
+	return true ;
 }
 
-string strAdoptRule1 ( string sentence , pair < char , int > pLetterInfo )
+string strRemoveSpace ( string strAnswer )
 {
-	int iCount = 0 ;
-	int iStringSize = sentence.size () ;
-	const char * cpString = sentence.data () ;
-	int iStartIndex = -1 ;
-	int iEndIndex = 0 ;
-	string strOriginWord = " " ;
-	
-	
-	
-	for ( int i = 1 ; i < iStringSize - ( pLetterInfo.second << 1 ) + 1 ; ++i )
+	string strReturn = "" ;
+	int iEmptySpaceIndex = -1 ;
+	int iStringSize = strAnswer.size () ;
+
+
+
+	for ( int i = 0 ; i < iStringSize ; ++i )
 	{
-		char cTemp = cpString [ i ] ;
-		
-		if ( cTemp == pLetterInfo.first )
+		if ( ( 'a' <= strAnswer [ i ] ) && ( strAnswer [ i ] <= 'z' ) )
+			return "invalid" ;
+		else if ( ( -1 == iEmptySpaceIndex ) && ( ( ' ' == strAnswer [ i ] ) || ( '.' == strAnswer [ i ] ) ) )
 		{
-			iStartIndex = i - 1 ;
-			iEndIndex = i + ( pLetterInfo.second << 1 ) - 1 ;
-			strOriginWord += cpString [ iStartIndex ] ;
-			
-			if ( ( ' ' == cpString [ iStartIndex ] ) || ( ' ' == cpString [ iEndIndex ] ) )		// This must be not ' '
-				return "" ;
-			
-			for ( int j = i + 2 ; j <= iEndIndex ; j += 2 )
+			iEmptySpaceIndex = i ;
+		}
+		else if ( ( 'A' <= strAnswer [ i ] ) && ( strAnswer [ i ] <= 'Z' ) )
+		{
+			if ( 0 < iEmptySpaceIndex )
 			{
-				strOriginWord += cpString [ j - 1 ] ;
-				
-				if ( cpString [ j ] != cTemp )
-					return "" ;								// Small letter exist at weird place
+				strReturn += ' ' ;
 			}
 			
-			strOriginWord += cpString [ iEndIndex ] ;
-			strOriginWord += " " ;
-
-			if ( ( 0 != iStartIndex ) && ( iEndIndex != iStringSize - 1 )
-			&& ( cpString [ iStartIndex - 1 ] == cpString [ iEndIndex + 1 ] )
-			&& ( 'a' <= cpString [ iStartIndex - 1 ] ) && ( cpString [ iStartIndex - 1 ] <= 'z' ) )
-			{
-				-- iStartIndex ;
-				++ iEndIndex ;
-				int iVectorSize = vSmallLetter.size () ;
-
-				for ( int i = 0 ; i < iVectorSize ; ++i )
-				{
-					if ( cpString [ iStartIndex ] == vSmallLetter [ i ].first )
-					{
-						vSmallLetter [ i ].second = 0 ;
-
-						break ;
-					}
-				}
-			}
-			
-			return sentence.substr ( 0 , iStartIndex ) + strOriginWord + sentence.substr ( iEndIndex + 1 , iStringSize - iEndIndex ) ;
+			iEmptySpaceIndex = -1 ;
+			strReturn += strAnswer [ i ] ;
 		}
 	}
-	
-	return "" ;
-}
 
-string strGetOriginSentence ( string sentence )
-{
-	int iStringSize = sentence.size () ;
-	int iProcessSize = vSmallLetter.size () ;
-
-
-
-	for ( int i = 0 ; i < iProcessSize ; ++i )
-	{
-		int iSmallLetterCount = vSmallLetter [ i ].second ;
-		
-		
-		if ( ( 2 != iSmallLetterCount ) && ( 0 != iSmallLetterCount ) )
-		{
-			sentence = strAdoptRule1 ( sentence , vSmallLetter [ i ] ) ;
-			
-			if ( 0 == sentence.size () )			// If can't adopt rule 1
-				return "invalid" ;
-		}
-	}
-	for ( int i = 0 ; i < iProcessSize ; ++i )
-	{
-		int iSmallLetterCount = vSmallLetter [ i ].second ;
-		
-		
-		if ( 2 == iSmallLetterCount )
-		{
-			sentence = strAdoptRule2 ( sentence , vSmallLetter [ i ] ) ;
-			
-			if ( 0 == sentence.size () )			// If can't adopt rule 1
-				return "invalid" ;
-		}
-	}
-	
-	return sentence ;
+	return strReturn ;
 }
 
 string solution ( string sentence )
 {
-	int iStringSize = sentence.size () ;
-	const char * cpString = sentence.data () ;
-	string answer = "" ;
-	unordered_map < char , int > umSmallLetterCount ;
+	string answer = sentence ;
+	vector < int > vAlphabetCount ( 26 , 0 ) ;
+	int iSentenceSize = sentence.size () ;
+	const char * cpSentence = sentence.data () ;
 	
 	
 	
-	for ( int i = 0 ; i < iStringSize ; ++i )
+	for ( int i = 0 ; i < iSentenceSize ; ++i )
 	{
-		char cTemp = * cpString ++ ;
-		
-		if ( ( 'a' <= cTemp ) && ( cTemp <= 'z' ) )
-			++ umSmallLetterCount [ cTemp ] ;
-		
-		if ( ' ' == cTemp )						// This sentence must not contain blank
+		if ( ( 'a' <= cpSentence [ i ] ) && ( cpSentence [ i ] <= 'z' ) )			// Small letter
+		{
+			++ vAlphabetCount [ cpSentence [ i ] - 'a' ] ;
+		}
+		else if ( ' ' == cpSentence [ i ] )		// Empty space must be deleted
 			return "invalid" ;
 	}
-	for ( auto iter : umSmallLetterCount )
+	
+	for ( int i = 0 ; i < 26 ; ++i )
 	{
-		vSmallLetter.emplace_back ( make_pair ( iter.first , iter.second ) ) ;
+		if ( ( 0 != vAlphabetCount [ i ] ) && ( 2 != vAlphabetCount [ i ] ) )		// Only rule 1
+		{
+			if ( ! bAdoptRule1 ( answer , 'a' + i , vAlphabetCount [ i ] ) )		// If false, can't adopt rule1
+				return "invalid" ;
+		}
+	}
+	for ( int i = 0 ; i < 26 ; ++i )
+	{
+		if ( 2 == vAlphabetCount [ i ] )
+		{
+			if ( ! bAdoptRule2 ( answer , 'a' + i , vAlphabetCount ) )				// If false, can't adopt rule2
+				return "invalid" ;
+		}
 	}
 	
-	
-	answer = strGetOriginSentence ( sentence ) ;
-	
-	return strEraseWrongBlank ( answer ) ;
+	return strRemoveSpace ( answer ) ;
 }
