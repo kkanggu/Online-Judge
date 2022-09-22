@@ -79,28 +79,22 @@ int solution ( int n , vector < vector < int > > data )
 	
 	for ( int i = 0 ; i < iDataSize - 1 ; ++i )			// Find if can place tent with every pair
 	{
-		int iX = umCompressX [ data [ i ] [ 0 ] ] ;
-		int iY = umCompressX [ data [ i ] [ 1 ] ] ;
-		
+		int iMinX = umCompressX [ data [ i ] [ 0 ] ] ;
+
 		for ( int j = i + 1 ; j < iDataSize ; ++j )
 		{
-			int iTempX = umCompressX [ data [ j ] [ 0 ] ] ;
-			int iTempY = umCompressX [ data [ j ] [ 1 ] ] ;
+			int iMaxX = umCompressX [ data [ j ] [ 0 ] ] ;
+			int iMaxY = max ( umCompressY [ data [ i ] [ 1 ] ] , umCompressY [ data [ j ] [ 1 ] ] ) ;
+			int iMinY = min ( umCompressY [ data [ i ] [ 1 ] ] , umCompressY [ data [ j ] [ 1 ] ] ) ;
 
 
-			if ( ( iX == iTempX ) || ( iY == iTempY ) )
+			if ( ( iMaxX == iMinX ) || ( iMaxY == iMinY ) )
 				continue ;
 
-			if ( iY < iTempY )			// right upper diagonal, shape /
-			{
-				if ( 0 == vDP [ iTempX - 1 ] [ iTempY - 1 ] - vDP [ iX ] [ iTempY - 1 ] - vDP [ iTempX - 1 ] [ iY ] + vDP [ iX ] [ iY ] )
-					++ answer ;
-			}
-			else						// right upper diagonal, shape \ .
-			{
-				if ( 0 == vDP [ iTempX - 1 ] [ iY ] - vDP [ iX ] [ iY ] - vDP [ iTempX - 1 ] [ iTempY - 1 ] + vDP [ iX ] [ iTempY - 1 ] )
-					++ answer ;				
-			}
+			if ( ( iMaxX + 1 == iMinX ) || ( 1 == abs ( iMaxY - iMinY ) ) )
+				++ answer ;
+			else if ( 0 == vDP [ iMaxX - 1 ] [ iMaxY - 1 ] - vDP [ iMinX ] [ iMaxY - 1 ] - vDP [ iMaxX - 1 ] [ iMinY ] + vDP [ iMinX ] [ iMinY ] )
+				++ answer ;
 		}
 	}
 	
