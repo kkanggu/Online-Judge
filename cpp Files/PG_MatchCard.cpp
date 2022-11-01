@@ -61,7 +61,6 @@ int iGetMinMove ( vector < vector < int > > & board , int iStartX , int iStartY 
 		}
 		
 		
-		
 		for ( int i = 0 ; i < 4 ; ++i )		// Move to each direction
 		{
 			if ( ! ( ( currentMove.bVertical && 1 == ( i & 1 ) ) || ( ! currentMove.bVertical && 0 == ( i & 1 ) ) ) )		// If moved vertical, then move to horizontal. Same when moved horizontal
